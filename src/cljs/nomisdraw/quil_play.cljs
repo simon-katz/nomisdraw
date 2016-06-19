@@ -3,14 +3,10 @@
             [quil.middleware :as qm]
             [reagent.core :as r]))
 
-;; TODO: Find out how to make Quil work well with Reagent.
-;; This stuff comes from
-;; http://stackoverflow.com/questions/33345084/quil-sketch-on-a-reagent-canvas
-
-;; TODO:
-;; I'm trying to make this functional (pass w and h around).
-;; Changing from `q/defsketch` to `q/sketch` makes things not work on
-;; browser refresh. OK on a Figwheel reload.
+;; How to make Quil work well with Reagent?
+;; - This core idea comes from
+;;   http://stackoverflow.com/questions/33345084/quil-sketch-on-a-reagent-canvas
+;; - I've made it more functional.
 
 (defn ^:private random-lowercase-string [length]
   (let [ascii-codes (range 97 123)]
@@ -31,7 +27,12 @@
                        (rem (:time state) h)
                        55
                        55))]
-    (q/defsketch fixme-!!!!-plop ; FIXME: can't make `q/sketch` work on browser refresh
+    ;; FIXME:
+    ;; I had `q/sketch` here, but it doesn't work on browser refresh.
+    ;; It's OK on a Figwheel reload, though.
+    ;; Changing to `q/defsketch` makes things work on both browser refresh
+    ;; and a Figwheel reload.
+    (q/defsketch fixme-!!!!-see-comment
       :setup      initial-state
       :update     update-state
       :draw       draw
