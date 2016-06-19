@@ -16,7 +16,7 @@
 
 (def ^:private config
   {:http {:port (or (http-port-from-env)
-                    12345)}}) ; FIXME: Change port no (need a config file)
+                    26741)}})
 
 ;;;; ___________________________________________________________________________
 

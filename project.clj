@@ -1,7 +1,7 @@
 (defproject nomisdraw "0.1.0-SNAPSHOT"
-  :description "FIXME: Add description"
-  :url "http://example.com/FIXME"
-  :license {:name "Eclipse Public License" ; FIXME -- is this what you want?
+  :description "A drawing app of some kind"
+  :url "https://github.com/simon-katz/nomisdraw"
+  :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
   :dependencies [[org.clojure/clojure "1.7.0"]
@@ -56,7 +56,7 @@
                 :figwheel {:on-jsload "nomisdraw.main/on-js-reload"}}]}
 
   :figwheel {;; :http-server-root "public" ;; default and assumes "resources"
-             ;; :server-port 3449 ; that's the default -- FIXME: Probably change this
+             :server-port 26740
              ;; :server-ip "127.0.0.1"
 
              :css-dirs ["resources/public/css"] ;; watch and update CSS
