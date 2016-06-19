@@ -20,7 +20,7 @@
              55
              55))
 
-(defn foo [canvas-name w h]
+(defn my-sketch [canvas-name w h]
   (letfn [(initial-state []
             {:time 1})
           (update-state [state]
@@ -41,4 +41,4 @@
      {:reagent-render (fn []
                         (let [element-wotsit (keyword (str "canvas#" canvas-id))]
                           [element-wotsit {:width w :height h}]))
-      :component-did-mount #(foo canvas-id w h)})))
+      :component-did-mount #(my-sketch canvas-id w h)})))
