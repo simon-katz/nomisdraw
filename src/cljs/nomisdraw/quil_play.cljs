@@ -12,31 +12,28 @@
 ;; Changing from `q/defsketch` to `q/sketch` makes things not work on
 ;; browser refresh. OK on a Figwheel reload.
 
-(defn draw [state w h]
-  (q/background 255)
-  (q/fill 0)
-  (q/ellipse (rem (:time state) w)
-             (rem (:time state) h)
-             55
-             55))
-
-(defn my-sketch [canvas-name w h]
+(defn ^:private my-sketch [canvas-name w h]
   (letfn [(initial-state []
             {:time 1})
           (update-state [state]
-            (update state :time inc))]
+            (update state :time inc))
+          (draw [state]
+            (q/background 255)
+            (q/fill 0)
+            (q/ellipse (rem (:time state) w)
+                       (rem (:time state) h)
+                       55
+                       55))]
     (q/defsketch fixme-!!!!-plop ; FIXME: can't make `q/sketch` work on browser refresh
-      :setup  initial-state
-      :update update-state
-      :draw   (fn [state] (draw state w h))
-      :host canvas-name
+      :setup      initial-state
+      :update     update-state
+      :draw       draw
+      :host       canvas-name
       :middleware [qm/fun-mode]
-      :size [w h])))
+      :size       [w h])))
 
-(defn hello-world []
-  (let [w 200
-        h 400
-        canvas-id "the-canvas"]
+(defn a-sketch-in-reagent [w h]
+  (let [canvas-id "the-canvas"]
     (r/create-class
      {:reagent-render (fn []
                         (let [element-wotsit (keyword (str "canvas#" canvas-id))]
