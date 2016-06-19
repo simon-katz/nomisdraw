@@ -1,6 +1,6 @@
 (ns nomisdraw.quil-play
   (:require [quil.core :as q :include-macros true]
-            [quil.middleware :as qm]
+            [quil.middleware :as m]
             [reagent.core :as r]))
 
 ;; How to make Quil work well with Reagent?
@@ -37,7 +37,7 @@
       :update     update-state
       :draw       draw
       :host       canvas-name
-      :middleware [qm/fun-mode]
+      :middleware [m/fun-mode]
       :size       [w h])))
 
 (defn a-sketch-in-reagent [w h]
