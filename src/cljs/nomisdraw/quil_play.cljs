@@ -20,7 +20,7 @@
              55
              55))
 
-(defn foo [w h]
+(defn foo [canvas-name w h]
   (letfn [(initial-state []
             {:time 1})
           (update-state [state]
@@ -29,14 +29,16 @@
       :setup  initial-state
       :update update-state
       :draw   (fn [state] (draw state w h))
-      :host "foo"
+      :host canvas-name
       :middleware [qm/fun-mode]
       :size [w h])))
 
 (defn hello-world []
   (let [w 200
-        h 400]
-   (r/create-class
-    {:reagent-render (fn []
-                       [:canvas#foo {:width w :height h}])
-     :component-did-mount #(foo w h)})))
+        h 400
+        canvas-id "the-canvas"]
+    (r/create-class
+     {:reagent-render (fn []
+                        (let [element-wotsit (keyword (str "canvas#" canvas-id))]
+                          [element-wotsit {:width w :height h}]))
+      :component-did-mount #(foo canvas-id w h)})))
