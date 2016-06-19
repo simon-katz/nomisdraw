@@ -7,30 +7,36 @@
 ;; This stuff comes from
 ;; http://stackoverflow.com/questions/33345084/quil-sketch-on-a-reagent-canvas
 
-(def w 400)
-(def h 400)
+;; TODO:
+;; I'm trying to make this functional (pass w and h around).
+;; Changing from `q/defsketch` to `q/sketch` makes things not work on
+;; browser refresh. OK on a Figwheel reload.
 
-(defn setup []
-  {:t 1})
-
-(defn update-x [state]
-  (update-in state [:t] inc))
-
-(defn draw [state]
+(defn draw [state w h]
   (q/background 255)
   (q/fill 0)
-  (q/ellipse (rem (:t state) w) 46 55 55))
+  (q/ellipse (rem (:time state) w)
+             (rem (:time state) h)
+             55
+             55))
 
-(q/defsketch foo
-  :setup  setup
-  :update update-x
-  :draw   draw
-  :host "foo"
-  :no-start true
-  :middleware [qm/fun-mode]
-  :size [w h])
+(defn foo [w h]
+  (letfn [(initial-state []
+            {:time 1})
+          (update-state [state]
+            (update state :time inc))]
+    (q/defsketch fixme-!!!!-plop ; FIXME: can't make `q/sketch` work on browser refresh
+      :setup  initial-state
+      :update update-state
+      :draw   (fn [state] (draw state w h))
+      :host "foo"
+      :middleware [qm/fun-mode]
+      :size [w h])))
 
 (defn hello-world []
-  (r/create-class
-    {:reagent-render (fn [] [:canvas#foo {:width w :height h}])
-     :component-did-mount foo}))
+  (let [w 200
+        h 400]
+   (r/create-class
+    {:reagent-render (fn []
+                       [:canvas#foo {:width w :height h}])
+     :component-did-mount #(foo w h)})))
