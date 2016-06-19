@@ -12,9 +12,12 @@
 ;; Changing from `q/defsketch` to `q/sketch` makes things not work on
 ;; browser refresh. OK on a Figwheel reload.
 
-(defn random-lowercase-string [length]
+(defn ^:private random-lowercase-string [length]
   (let [ascii-codes (range 97 123)]
     (apply str (repeatedly length #(char (rand-nth ascii-codes))))))
+
+(defn ^:private random-canvas-id []
+  (random-lowercase-string 30))
 
 (defn ^:private my-sketch [canvas-name w h]
   (letfn [(initial-state []
@@ -37,7 +40,7 @@
       :size       [w h])))
 
 (defn a-sketch-in-reagent [w h]
-  (let [canvas-id (random-lowercase-string 30)]
+  (let [canvas-id (random-canvas-id)]
     (r/create-class
      {:reagent-render (fn []
                         (let [element-wotsit (keyword (str "canvas#" canvas-id))]
