@@ -22,7 +22,7 @@
     (if jetty-webserver
       this
       (do
-        (timbre/info "Starting webserver")
+        (timbre/info "Starting webserver on port" port)
         (let [jw (try
                    (make-jetty-server-and-run-it (handler-maker)
                                                  port)
