@@ -29,6 +29,7 @@
   :repl-options {:init-ns user}
 
   :source-paths ["src/clj"]
+  :test-paths   ["test/clj"]
   
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
 
@@ -89,6 +90,9 @@
 
   :profiles {:dev {:source-paths ["dev"]
                    :dependencies [[org.clojure/tools.namespace "0.2.11"]
-                                  [midje "1.7.0"]]
+                                  [midje "1.7.0"]
+                                  [walmartlabs/system-viz "0.1.1"]]
                    :plugins [[lein-midje "3.1.3"]]}
-             :uberjar {:aot :all}})
+             :uberjar {:aot :all}}
+
+  :target-path "target/%s/")

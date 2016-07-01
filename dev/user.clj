@@ -7,6 +7,7 @@
             [clojure.tools.namespace.move :refer :all]
             [clojure.tools.namespace.repl :refer :all]
             [com.stuartsierra.component :as component]
+            [com.walmartlabs.system-viz :as viz]
             [midje.repl :refer :all]
             [nomisdraw.system.main :as main]
             [nomisdraw.system.system :as system]))
