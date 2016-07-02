@@ -76,4 +76,4 @@
    :children
    [(for [i (range 2)]
       ^{:key i}
-      [a-sketch-in-reagent 100 400])]])
+      [a-sketch-in-reagent 200 400])]])
