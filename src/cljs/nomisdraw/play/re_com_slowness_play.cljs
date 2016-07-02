@@ -1,4 +1,4 @@
-(ns nomisdraw.play.re-com-play
+(ns nomisdraw.play.re-com-slowness-play
   (:require [re-com.core :as re]))
 
 (defn make-re-com-stuff []
