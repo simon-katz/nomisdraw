@@ -1,6 +1,6 @@
 (ns nomisdraw.render
   (:require [re-com.core :as re]
-            [nomisdraw.play.re-com-play :as re-com-play]
+            [nomisdraw.play.re-com-slowness-play :as re-com-play]
             [nomisdraw.quil-play :as qp]))
 
 (defn ^:private style-for-top-level-div []
