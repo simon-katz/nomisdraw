@@ -1,0 +1,5 @@
+* TODO
+** The Quil stuff gets slower and slower when making selections from the dropdown
+*** and when Figwheel reloads
+** The dropdown stuff maybe belongs in a re-com-utils ns
+*** (do you have one in piano-xxxx or env-viewer?)
