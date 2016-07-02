@@ -12,7 +12,7 @@
   [re/v-box
    :style (style-for-top-level-div)
    :children
-   [[:h1 "nomisdraw"]
+   [[:h1 "Nomisdraw"]
     [qp/some-quil-stuff]
     (case 1
       1 nil
