@@ -1,7 +1,7 @@
 (ns nomisdraw.render
-  (:require [re-com.core :as re]
-            [nomisdraw.play.re-com-slowness-play :as slowness-play]
-            [nomisdraw.quil-play :as qp]))
+  (:require [nomisdraw.play.re-com-slowness-play :as slowness-play]
+            [nomisdraw.quil-play :as qp]
+            [re-com.core :as re]))
 
 (defn ^:private style-for-top-level-div []
   (let [m "20px"]
