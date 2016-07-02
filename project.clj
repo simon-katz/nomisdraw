@@ -12,7 +12,7 @@
                  [com.taoensso/timbre "4.3.1"]
                  [cljs-ajax "0.5.3"]
                  [environ "1.0.1"]
-                 [reagent "0.6.0-alpha2"]
+                 [reagent "0.6.0-rc"]
                  [re-com "0.8.3"]
                  [compojure "1.4.0"]
                  [ring "1.4.0"]
