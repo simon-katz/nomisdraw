@@ -11,8 +11,7 @@
 (defn top-level-render []
   [:div {:style (style-for-top-level-div)}
    [:h1 "nomisdraw"]
-   [qp/a-sketch-in-reagent 100 400]
-   [qp/a-sketch-in-reagent 100 400]
+   [qp/some-quil-stuff]
    (case 1
      1 nil
      2 (re-com-play/make-re-com-stuff))])

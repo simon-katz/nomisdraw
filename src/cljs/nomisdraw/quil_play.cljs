@@ -53,10 +53,15 @@
       :middleware [m/fun-mode]
       :size       [w h])))
 
-(defn a-sketch-in-reagent [w h]
+(defn ^:private a-sketch-in-reagent [w h]
   (let [canvas-id (random-canvas-id)]
     (r/create-class
      {:reagent-render (fn []
                         (let [element-wotsit (keyword (str "canvas#" canvas-id))]
                           [element-wotsit {:width w :height h}]))
       :component-did-mount #(my-sketch canvas-id w h)})))
+
+(defn some-quil-stuff []
+  [:div
+   [a-sketch-in-reagent 100 400]
+   [a-sketch-in-reagent 100 400]])
