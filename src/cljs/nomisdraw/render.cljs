@@ -1,6 +1,6 @@
 (ns nomisdraw.render
   (:require [re-com.core :as re]
-            [nomisdraw.play.re-com-slowness-play :as re-com-play]
+            [nomisdraw.play.re-com-slowness-play :as slowness-play]
             [nomisdraw.quil-play :as qp]))
 
 (defn ^:private style-for-top-level-div []
@@ -9,9 +9,11 @@
      :margin-right m}))
 
 (defn top-level-render []
-  [:div {:style (style-for-top-level-div)}
-   [:h1 "nomisdraw"]
-   [qp/some-quil-stuff]
-   (case 1
-     1 nil
-     2 (re-com-play/make-re-com-stuff))])
+  [re/v-box
+   :style (style-for-top-level-div)
+   :children
+   [[:h1 "nomisdraw"]
+    [qp/some-quil-stuff]
+    (case 1
+      1 nil
+      2 (slowness-play/make-re-com-stuff))]])
