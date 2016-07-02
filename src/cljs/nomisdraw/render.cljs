@@ -3,7 +3,7 @@
             [nomisdraw.play.re-com-play :as re-com-play]
             [nomisdraw.quil-play :as qp]))
 
-(defn style-for-top-level-div []
+(defn ^:private style-for-top-level-div []
   (let [m "20px"]
     {:margin-left  m
      :margin-right m}))
