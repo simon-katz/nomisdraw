@@ -9,12 +9,12 @@
     {:margin-left  m
      :margin-right m}))
 
-(def ^:private choices [{:id :some-quil-stuff
-                         :label "Some Quil Stuff"
-                         :fun qp/some-quil-stuff}
-                        {:id :nested-re-com-can-be-slow
+(def ^:private choices [{:id :nested-re-com-can-be-slow
                          :label "Nested re-com can be slow"
-                         :fun slowness-play/make-re-com-stuff}])
+                         :fun slowness-play/make-re-com-stuff}
+                        {:id :some-quil-stuff
+                         :label "Some Quil Stuff"
+                         :fun qp/some-quil-stuff}])
 
 (def ^:private selected-demo-id (r/atom (-> choices
                                             first
