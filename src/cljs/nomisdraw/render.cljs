@@ -1,6 +1,6 @@
 (ns nomisdraw.render
   (:require [nomisdraw.play.re-com-slowness-play :as slowness-play]
-            [nomisdraw.quil-play :as qp]
+            [nomisdraw.play.quil-animation-play :as qap]
             [reagent.core :as r]
             [re-com.core :as re]))
 
@@ -13,8 +13,8 @@
                          :label "Nested re-com can be slow"
                          :fun slowness-play/make-re-com-stuff}
                         {:id :some-quil-stuff
-                         :label "Some Quil Stuff"
-                         :fun qp/some-quil-stuff}])
+                         :label "Some Quil Animation Stuff"
+                         :fun qap/some-quil-animation-stuff}])
 
 (def ^:private selected-demo-id (r/atom (-> choices
                                             first

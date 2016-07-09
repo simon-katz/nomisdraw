@@ -1,4 +1,4 @@
-(ns nomisdraw.quil-play
+(ns nomisdraw.play.quil-animation-play
   (:require [quil.core :as q :include-macros true]
             [quil.middleware :as m]
             [reagent.core :as r]
@@ -71,7 +71,7 @@
           :component-did-mount #(my-sketch canvas-id w h)}])
       boxify))
 
-(defn some-quil-stuff []
+(defn some-quil-animation-stuff []
   [re/v-box
    :children
    [(for [i (range 2)]
