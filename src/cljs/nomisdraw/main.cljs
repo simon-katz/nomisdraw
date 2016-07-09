@@ -1,12 +1,12 @@
 (ns nomisdraw.main
-  (:require [nomisdraw.render :as render]
+  (:require [nomisdraw.top-level-render :as top-level-render]
             [reagent.core :as r]))
 
 (enable-console-print!)
 
 (println "Edits to this text should show up in your developer console.")
 
-(r/render-component [render/top-level-render]
+(r/render-component [top-level-render/render]
                     (. js/document (getElementById "app")))
 
 (defn on-js-reload []

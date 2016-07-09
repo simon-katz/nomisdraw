@@ -1,4 +1,4 @@
-(ns nomisdraw.render
+(ns nomisdraw.top-level-render
   (:require [nomisdraw.play.quil-animation-play :as qap]
             [nomisdraw.play.quil-basics :as qb]
             [nomisdraw.play.re-com-slowness-play :as slowness-play]
@@ -45,7 +45,7 @@
                               :fun)]
                  [fun])]])
 
-(defn top-level-render []
+(defn render []
   [re/v-box
    :style (style-for-top-level-div)
    :children
