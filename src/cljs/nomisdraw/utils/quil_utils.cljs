@@ -23,12 +23,12 @@
    :children
    [elem]])
 
-(defn sketch-in-reagent [f w h]
+(defn sketch-in-reagent [sketch-fun w h]
   (-> (let [canvas-id (random-canvas-id)]
         [r/create-class
          {:reagent-render (fn []
                             (let [element-wotsit (keyword (str "canvas#" canvas-id))]
                               [element-wotsit {:width  w
                                                :height h}]))
-          :component-did-mount #(f canvas-id w h)}])
+          :component-did-mount #(sketch-fun canvas-id w h)}])
       boxify))

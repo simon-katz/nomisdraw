@@ -4,7 +4,7 @@
             [quil.middleware :as m]
             [re-com.core :as re]))
 
-(defn ^:private my-sketch [canvas-name w h]
+(defn ^:private my-sketch [canvas-id w h]
   (letfn [(initial-state []
             {:time 1})
           (update-state [state]
@@ -38,7 +38,7 @@
       :setup      initial-state
       :update     update-state
       :draw       draw
-      :host       canvas-name
+      :host       canvas-id
       :middleware [m/fun-mode]
       :size       [w h])))
 
