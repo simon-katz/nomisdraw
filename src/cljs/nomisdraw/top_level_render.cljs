@@ -10,15 +10,15 @@
     {:margin-left  m
      :margin-right m}))
 
-(def ^:private choices [{:id :nested-re-com-can-be-slow
-                         :label "Nested re-com can be slow"
-                         :fun slowness-play/render}
-                        {:id :quil-basics
+(def ^:private choices [{:id :quil-basics
                          :label "Quil Basics"
                          :fun qb/render}
                         {:id :some-quil-animation-stuff
                          :label "Some Quil Animation Stuff"
-                         :fun qap/render}])
+                         :fun qap/render}
+                        {:id :nested-re-com-can-be-slow
+                         :label "Nested re-com can be slow"
+                         :fun slowness-play/render}])
 
 (def ^:private selected-demo-id (r/atom (-> choices
                                             first
