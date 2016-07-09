@@ -90,8 +90,7 @@
 
   :profiles {:dev {:source-paths ["dev"]
                    :dependencies [[org.clojure/tools.namespace "0.2.11"]
-                                  [midje "1.7.0"]
-                                  [walmartlabs/system-viz "0.1.1"]]
+                                  [midje "1.7.0"]]
                    :plugins [[lein-midje "3.1.3"]]}
              :uberjar {:aot :all}}
 
