@@ -12,19 +12,19 @@
 
 (def ^:private choices [{:id :nested-re-com-can-be-slow
                          :label "Nested re-com can be slow"
-                         :fun slowness-play/make-re-com-stuff}
+                         :fun slowness-play/render}
                         {:id :quil-basics
                          :label "Quil Basics"
-                         :fun qb/quil-basics}
+                         :fun qb/render}
                         {:id :some-quil-animation-stuff
                          :label "Some Quil Animation Stuff"
-                         :fun qap/some-quil-animation-stuff}])
+                         :fun qap/render}])
 
 (def ^:private selected-demo-id (r/atom (-> choices
                                             first
                                             :id)))
 
-(defn ^:private the-choices []
+(defn ^:private render-choices []
   [re/v-box
    :width     "700px"
    :gap       "10px"
@@ -50,4 +50,4 @@
    :style (style-for-top-level-div)
    :children
    [[:h1 "Nomisdraw"]
-    [the-choices]]])
+    [render-choices]]])

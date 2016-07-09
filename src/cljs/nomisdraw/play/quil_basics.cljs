@@ -1,4 +1,4 @@
 (ns nomisdraw.play.quil-basics)
 
-(defn quil-basics []
+(defn render []
   [:p "####"])

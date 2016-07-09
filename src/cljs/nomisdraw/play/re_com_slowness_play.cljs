@@ -1,7 +1,7 @@
 (ns nomisdraw.play.re-com-slowness-play
   (:require [re-com.core :as re]))
 
-(defn make-re-com-stuff []
+(defn render []
   (time
    (let [text          "Rhubarb"
          approach      1

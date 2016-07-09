@@ -71,7 +71,7 @@
           :component-did-mount #(my-sketch canvas-id w h)}])
       boxify))
 
-(defn some-quil-animation-stuff []
+(defn render []
   [re/v-box
    :children
    [(for [i (range 2)]
