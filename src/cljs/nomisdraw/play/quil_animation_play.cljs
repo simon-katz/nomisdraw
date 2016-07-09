@@ -1,20 +1,8 @@
 (ns nomisdraw.play.quil-animation-play
-  (:require [quil.core :as q :include-macros true]
+  (:require [nomisdraw.utils.quil-utils :as qu]
+            [quil.core :as q :include-macros true]
             [quil.middleware :as m]
-            [reagent.core :as r]
             [re-com.core :as re]))
-
-;; How to make Quil work well with Reagent?
-;; - This core idea comes from
-;;   http://stackoverflow.com/questions/33345084/quil-sketch-on-a-reagent-canvas
-;; - I've made it more functional.
-
-(defn ^:private random-lowercase-string [length]
-  (let [ascii-codes (range 97 123)]
-    (apply str (repeatedly length #(char (rand-nth ascii-codes))))))
-
-(defn ^:private random-canvas-id []
-  (random-lowercase-string 30))
 
 (defn ^:private my-sketch [canvas-name w h]
   (letfn [(initial-state []
@@ -54,26 +42,9 @@
       :middleware [m/fun-mode]
       :size       [w h])))
 
-(defn ^:private boxify [elem]
-  ;; Use this to prevent horizontal stretching
-  [re/h-box
-   :size "none" ; seems to be the default, but not documented AFAICS
-   :children
-   [elem]])
-
-(defn ^:private a-sketch-in-reagent [f w h]
-  (-> (let [canvas-id (random-canvas-id)]
-        [r/create-class
-         {:reagent-render (fn []
-                            (let [element-wotsit (keyword (str "canvas#" canvas-id))]
-                              [element-wotsit {:width  w
-                                               :height h}]))
-          :component-did-mount #(f canvas-id w h)}])
-      boxify))
-
 (defn render []
   [re/v-box
    :children
    [(for [i (range 2)]
       ^{:key i}
-      [a-sketch-in-reagent my-sketch 200 400])]])
+      [qu/sketch-in-reagent my-sketch 200 400])]])
