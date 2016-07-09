@@ -55,20 +55,20 @@
       :size       [w h])))
 
 (defn ^:private boxify [elem]
-  ;; Use this tp prevent horizontal stretching
+  ;; Use this to prevent horizontal stretching
   [re/h-box
    :size "none" ; seems to be the default, but not documented AFAICS
    :children
    [elem]])
 
-(defn ^:private a-sketch-in-reagent [w h]
+(defn ^:private a-sketch-in-reagent [f w h]
   (-> (let [canvas-id (random-canvas-id)]
         [r/create-class
          {:reagent-render (fn []
                             (let [element-wotsit (keyword (str "canvas#" canvas-id))]
                               [element-wotsit {:width  w
                                                :height h}]))
-          :component-did-mount #(my-sketch canvas-id w h)}])
+          :component-did-mount #(f canvas-id w h)}])
       boxify))
 
 (defn render []
@@ -76,4 +76,4 @@
    :children
    [(for [i (range 2)]
       ^{:key i}
-      [a-sketch-in-reagent 200 400])]])
+      [a-sketch-in-reagent my-sketch 200 400])]])
