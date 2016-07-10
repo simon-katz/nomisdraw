@@ -23,7 +23,7 @@
                  [quil "2.4.0"]]
 
   :plugins [[lein-cljsbuild "1.1.2"]
-            [lein-figwheel "0.5.0-3"]]
+            [lein-figwheel "0.5.4-7"]]
 
   :main ^:skip-aot nomisdraw.system.main
   :repl-options {:init-ns user}
