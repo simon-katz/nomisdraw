@@ -1,10 +1,10 @@
 (ns nomisdraw.play.quil-animation-play
-  (:require [nomisdraw.utils.quil-utils :as qu]
+  (:require [nomisdraw.utils.quil-utils :as qu :include-macros true]
             [quil.core :as q :include-macros true]
             [quil.middleware :as m]
             [re-com.core :as re]))
 
-(defn ^:private my-sketch [canvas-id w h]
+(defn ^:private my-sketch [w h]
   (letfn [(initial-state []
             {:time 1})
           (update-state [state]
@@ -29,22 +29,17 @@
                 (doseq [t (range 0 100 0.01)]
                   (q/point (* t (q/sin t))
                            (* t (q/cos t)))))))]
-    ;; FIXME:
-    ;; I had `q/sketch` here, but it doesn't work on browser refresh.
-    ;; It's OK on a Figwheel reload, though.
-    ;; Changing to `q/defsketch` makes things work on both browser refresh
-    ;; and a Figwheel reload.
-    (q/defsketch fixme-!!!!-see-comment
-      :setup      initial-state
-      :update     update-state
-      :draw       draw
-      :host       canvas-id
-      :middleware [m/fun-mode]
-      :size       [w h])))
+    (qu/sketch-in-reagent w h
+                          :setup      initial-state
+                          :update     update-state
+                          :draw       draw)))
 
 (defn render []
   [re/v-box
    :children
-   [(for [i (range 2)]
-      ^{:key i}
-      [qu/sketch-in-reagent my-sketch 200 400])]])
+   (for [i (range 2)]
+     ^{:key i}
+     (my-sketch 200 400))])
+
+
+;; #### Error in browser: Uncaught TypeError: Cannot read property 'call' of null
