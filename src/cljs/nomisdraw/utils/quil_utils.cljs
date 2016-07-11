@@ -32,12 +32,18 @@
       boxify))
 
 (defn sketch-in-reagent [w h & {:keys [setup update draw]}]
+  
   ;; FIXME:
   ;; I had `q/sketch` here, but it doesn't work on browser refresh.
   ;; - I think it doesn't do the animation -- a background gets drawn.
   ;; It's OK on a Figwheel reload, though.
   ;; Changing to `q/defsketch` makes things work on both browser refresh
   ;; and a Figwheel reload.
+
+  ;; TODO: Maybe make this a macro.
+  ;; If you have to use `q/defsketch`, you need a macro so that you can
+  ;; pass arbitrary options in.
+  
   (let [canvas-id (random-canvas-id)
         tag-&-id  (keyword (str "canvas#" canvas-id))]
     (install-sketch-fun tag-&-id
