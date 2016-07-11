@@ -1,5 +1,5 @@
 (ns nomisdraw.play.quil-animation-play
-  (:require [nomisdraw.utils.quil-utils :as qu :include-macros true]
+  (:require [nomisdraw.utils.quil-utils :as qu]
             [quil.core :as q :include-macros true]
             [quil.middleware :as m]
             [re-com.core :as re]))
@@ -40,6 +40,3 @@
    (for [i (range 2)]
      ^{:key i}
      (my-sketch 200 400))])
-
-
-;; #### Error in browser: Uncaught TypeError: Cannot read property 'call' of null
