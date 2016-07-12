@@ -35,17 +35,15 @@
                                  (sketch-fun)))}]
       boxify))
 
-(defn sketch-in-reagent [w h & {:keys [setup update draw]}]
+(defn sketch-in-reagent [w h & sketch-args]
   (let [canvas-id (random-canvas-id)
         tag-&-id  (keyword (str "canvas#" canvas-id))]
     (install-sketch-fun tag-&-id
                         w
                         h
                         (fn []
-                          (q/sketch
-                           :setup      setup
-                           :update     update
-                           :draw       draw
-                           :host       canvas-id
-                           :middleware [m/fun-mode]
-                           :size       [w h])))))
+                          (apply q/sketch
+                                 (concat sketch-args
+                                         [:host       canvas-id
+                                          :middleware [m/fun-mode]
+                                          :size       [w h]]))))))
