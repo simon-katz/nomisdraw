@@ -32,7 +32,8 @@
     (qu/sketch-in-reagent w h
                           :setup      initial-state
                           :update     update-state
-                          :draw       draw)))
+                          :draw       draw
+                          :middleware [m/fun-mode])))
 
 (defn render []
   [re/v-box

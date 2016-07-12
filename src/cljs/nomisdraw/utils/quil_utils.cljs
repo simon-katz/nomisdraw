@@ -1,7 +1,6 @@
 (ns nomisdraw.utils.quil-utils
   (:require [cljs.core.async :as a]
             [quil.core :as q :include-macros true]
-            [quil.middleware :as m]
             [reagent.core :as r]
             [re-com.core :as re])
   (:require-macros [cljs.core.async.macros :as a]))
@@ -37,7 +36,6 @@
                                  (a/go
                                    (apply q/sketch
                                           (concat sketch-args
-                                                  [:host       canvas-id
-                                                   :middleware [m/fun-mode]
-                                                   :size       [w h]]))))}]
+                                                  [:host canvas-id
+                                                   :size [w h]]))))}]
         prevent-horizontal-stretching)))
