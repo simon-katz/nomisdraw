@@ -6,7 +6,7 @@
             [re-com.core :as re])
   (:require-macros [cljs.core.async.macros :as a]))
 
-;; How to make Quil work well with Reagent?
+;; Making Quil work well with Reagent...
 ;; - This core idea comes from
 ;;   http://stackoverflow.com/questions/33345084/quil-sketch-on-a-reagent-canvas
 ;; - I've made it more functional.
@@ -18,14 +18,13 @@
 (defn ^:private random-canvas-id []
   (random-lowercase-string 30))
 
-(defn ^:private boxify [elem]
-  ;; Use this to prevent horizontal stretching
+(defn ^:private prevent-horizontal-stretching [elem]
   [re/h-box
    :size "none" ; seems to be the default, but not documented AFAICS
    :children
    [elem]])
 
-(defn ^:private install-sketch-fun [tag-&-id w h sketch-fun]
+(defn ^:private sketch-component [tag-&-id w h sketch-fun]
   (-> [r/create-class
        {:reagent-render (fn []
                           [tag-&-id {:width  w
@@ -33,17 +32,17 @@
         :component-did-mount (fn []
                                (a/go
                                  (sketch-fun)))}]
-      boxify))
+      prevent-horizontal-stretching))
 
 (defn sketch-in-reagent [w h & sketch-args]
   (let [canvas-id (random-canvas-id)
         tag-&-id  (keyword (str "canvas#" canvas-id))]
-    (install-sketch-fun tag-&-id
-                        w
-                        h
-                        (fn []
-                          (apply q/sketch
-                                 (concat sketch-args
-                                         [:host       canvas-id
-                                          :middleware [m/fun-mode]
-                                          :size       [w h]]))))))
+    (sketch-component tag-&-id
+                      w
+                      h
+                      (fn []
+                        (apply q/sketch
+                               (concat sketch-args
+                                       [:host       canvas-id
+                                        :middleware [m/fun-mode]
+                                        :size       [w h]]))))))
