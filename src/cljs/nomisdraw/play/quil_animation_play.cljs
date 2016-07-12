@@ -29,11 +29,11 @@
                 (doseq [t (range 0 100 0.01)]
                   (q/point (* t (q/sin t))
                            (* t (q/cos t)))))))]
-    (qu/sketch-in-reagent w h
-                          :setup      initial-state
+    (qu/sketch-in-reagent :setup      initial-state
                           :update     update-state
                           :draw       draw
-                          :middleware [m/fun-mode])))
+                          :middleware [m/fun-mode]
+                          :size       [w h])))
 
 (defn render []
   [re/v-box

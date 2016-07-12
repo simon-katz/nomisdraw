@@ -23,8 +23,14 @@
    :children
    [elem]])
 
-(defn sketch-in-reagent [w h & sketch-args]
-  (let [canvas-id (random-canvas-id)
+(defn sketch-in-reagent [& {:as sketch-args}]
+  (assert (not (contains? sketch-args :host))
+          ":host should not be provided to `sketch-in-reagent`")
+  (assert (not (= (:size sketch-args)
+                  :fullscreen))
+          ":fullscreen not supported as a size for `sketch-in-reagent`")
+  (let [[w h] (:size sketch-args)
+        canvas-id (random-canvas-id)
         canvas-tag-&-id  (keyword (str "canvas#" canvas-id))]
     (-> [r/create-class
          {:reagent-render      (fn []
@@ -35,7 +41,7 @@
                                  ;; before we attach the sketch to it
                                  (a/go
                                    (apply q/sketch
-                                          (concat sketch-args
-                                                  [:host canvas-id
-                                                   :size [w h]]))))}]
+                                          (concat (apply concat
+                                                         (into [] sketch-args))
+                                                  [:host canvas-id]))))}]
         prevent-horizontal-stretching)))
