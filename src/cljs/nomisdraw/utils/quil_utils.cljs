@@ -24,27 +24,20 @@
    :children
    [elem]])
 
-(defn ^:private sketch-component [canvas-tag-&-id w h sketch-fun]
-  (-> [r/create-class
-       {:reagent-render (fn []
-                          [canvas-tag-&-id {:width  w
-                                            :height h}])
-        :component-did-mount (fn []
-                               ;; use a go block so that the canvas exists
-                               ;; before we attach the sketch to it
-                               (a/go
-                                 (sketch-fun)))}]
-      prevent-horizontal-stretching))
-
 (defn sketch-in-reagent [w h & sketch-args]
   (let [canvas-id (random-canvas-id)
         canvas-tag-&-id  (keyword (str "canvas#" canvas-id))]
-    (sketch-component canvas-tag-&-id
-                      w
-                      h
-                      (fn []
-                        (apply q/sketch
-                               (concat sketch-args
-                                       [:host       canvas-id
-                                        :middleware [m/fun-mode]
-                                        :size       [w h]]))))))
+    (-> [r/create-class
+         {:reagent-render      (fn []
+                                 [canvas-tag-&-id {:width  w
+                                                   :height h}])
+          :component-did-mount (fn []
+                                 ;; use a go block so that the canvas exists
+                                 ;; before we attach the sketch to it
+                                 (a/go
+                                   (apply q/sketch
+                                          (concat sketch-args
+                                                  [:host       canvas-id
+                                                   :middleware [m/fun-mode]
+                                                   :size       [w h]]))))}]
+        prevent-horizontal-stretching)))
