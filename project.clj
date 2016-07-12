@@ -7,7 +7,7 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.9.76"]
                  [prismatic/schema "1.0.4"]
-                 [org.clojure/core.async "0.2.374"]
+                 [org.clojure/core.async "0.2.385"]
                  [com.stuartsierra/component "0.3.1"]
                  [com.taoensso/timbre "4.3.1"]
                  [cljs-ajax "0.5.3"]
