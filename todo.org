@@ -1,4 +1,5 @@
 * TODO
+** Why is CPU 100% even when no animation?
 ** The Quil stuff gets slower and slower when making selections from the dropdown
 *** and when Figwheel reloads
 *** (Note that CPU usage only happens when the browser is visible (right?))
