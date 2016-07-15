@@ -35,17 +35,17 @@
                             (apply draw args)))
         sketch-args'    (assoc sketch-args :draw draw')]
     (-> [r/create-class
-         {:reagent-render      (fn []
-                                 [canvas-tag-&-id {:width  w
-                                                   :height h}])
-          :component-did-mount (fn []
-                                 ;; Use a go block so that the canvas exists
-                                 ;; before we attach the sketch to it.
-                                 (a/go
-                                   (apply q/sketch
-                                          (concat (apply concat
-                                                         (into [] sketch-args'))
-                                                  [:host canvas-id]))))
+         {:reagent-render         (fn []
+                                    [canvas-tag-&-id {:width  w
+                                                      :height h}])
+          :component-did-mount    (fn []
+                                    ;; Use a go block so that the canvas exists
+                                    ;; before we attach the sketch to it.
+                                    (a/go
+                                      (apply q/sketch
+                                             (concat (apply concat
+                                                            (into [] sketch-args'))
+                                                     [:host canvas-id]))))
           :component-will-unmount (fn []
                                     (reset! unmounted?-atom true))}]
         prevent-horizontal-stretching)))
