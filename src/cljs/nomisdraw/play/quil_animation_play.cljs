@@ -4,7 +4,7 @@
             [quil.middleware :as m]
             [re-com.core :as re]))
 
-(defn ^:private my-sketch [w h]
+(defn ^:private my-sketch [canvas-id w h]
   (letfn [(initial-state []
             {:time 1})
           (update-state [state]
@@ -29,7 +29,8 @@
                 (doseq [t (range 0 100 0.01)]
                   (q/point (* t (q/sin t))
                            (* t (q/cos t)))))))]
-    (qu/sketch-in-reagent :setup      initial-state
+    (qu/sketch-in-reagent canvas-id
+                          :setup      initial-state
                           :update     update-state
                           :draw       draw
                           :middleware [m/fun-mode]
@@ -40,4 +41,5 @@
    :children
    (for [i (range 2)]
      ^{:key i}
-     (my-sketch 200 400))])
+     (my-sketch (str "my-sketch-" i)
+                200 400))])
