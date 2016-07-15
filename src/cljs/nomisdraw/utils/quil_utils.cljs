@@ -1,6 +1,7 @@
 (ns nomisdraw.utils.quil-utils
   (:require [cljs.core.async :as a]
             [quil.core :as q :include-macros true]
+            [reagent.core :as r]
             [re-com.core :as re])
   (:require-macros [cljs.core.async.macros :as a]))
 
@@ -32,15 +33,18 @@
   (let [[w h] (:size sketch-args)
         canvas-id (random-canvas-id)
         canvas-tag-&-id  (keyword (str "canvas#" canvas-id))]
-    ;; Use a go block so that the canvas exists
-    ;; before we attach the sketch to it.
-    (a/go
-      (apply q/sketch
-             (concat (apply concat
-                            (into [] sketch-args))
-                     [:host canvas-id])))
-    (-> [canvas-tag-&-id {:width  w
-                          :height h}]
+    (-> [r/create-class
+         {:reagent-render      (fn []
+                                 [canvas-tag-&-id {:width  w
+                                                   :height h}])
+          :component-did-mount (fn []
+                                 ;; Use a go block so that the canvas exists
+                                 ;; before we attach the sketch to it.
+                                 (a/go
+                                   (apply q/sketch
+                                          (concat (apply concat
+                                                         (into [] sketch-args))
+                                                  [:host canvas-id]))))}]
         prevent-horizontal-stretching)))
 
 ;;;; TODO: See note about CPU usage
