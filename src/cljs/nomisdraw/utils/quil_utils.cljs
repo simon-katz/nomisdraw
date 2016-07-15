@@ -27,7 +27,13 @@
                                 (str ":size should be nil or a vector of size 2, but it is "
                                      size))
         [w h]           size
-        canvas-tag-&-id (keyword (str "canvas#" canvas-id))]
+        canvas-tag-&-id (keyword (str "canvas#" canvas-id))
+        unmounted?-atom (atom false)
+        draw            (:draw sketch-args)
+        draw'           (fn [& args]
+                          (when-not @unmounted?-atom
+                            (apply draw args)))
+        sketch-args'    (assoc sketch-args :draw draw')]
     (-> [r/create-class
          {:reagent-render      (fn []
                                  [canvas-tag-&-id {:width  w
@@ -38,8 +44,10 @@
                                  (a/go
                                    (apply q/sketch
                                           (concat (apply concat
-                                                         (into [] sketch-args))
-                                                  [:host canvas-id]))))}]
+                                                         (into [] sketch-args'))
+                                                  [:host canvas-id]))))
+          :component-will-unmount (fn []
+                                    (reset! unmounted?-atom true))}]
         prevent-horizontal-stretching)))
 
 ;;;; TODO: See note about CPU usage
