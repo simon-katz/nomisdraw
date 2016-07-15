@@ -19,12 +19,15 @@
 (defn sketch-in-reagent [canvas-id & {:as sketch-args}]
   ;; TODO: Add doc.
   (assert (not (contains? sketch-args :host))
-          ":host should not be provided to `sketch-in-reagent`")
-  (assert (not (= (:size sketch-args)
-                  :fullscreen))
-          ":fullscreen not supported as a size for `sketch-in-reagent`")
-  (let [[w h] (:size sketch-args)
-        canvas-tag-&-id  (keyword (str "canvas#" canvas-id))]
+          ":host arg not permitted (because host is being created here)")
+  (let [size            (:size sketch-args)
+        _               (assert (or (nil? size)
+                                    (and (vector? size)
+                                         (= (count size) 2)))
+                                (str ":size should be nil or a vector of size 2, but it is "
+                                     size))
+        [w h]           size
+        canvas-tag-&-id (keyword (str "canvas#" canvas-id))]
     (-> [r/create-class
          {:reagent-render      (fn []
                                  [canvas-tag-&-id {:width  w
