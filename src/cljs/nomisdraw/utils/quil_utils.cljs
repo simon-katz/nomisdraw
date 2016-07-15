@@ -49,5 +49,3 @@
           :component-will-unmount (fn []
                                     (reset! unmounted?-atom true))}]
         prevent-horizontal-stretching)))
-
-;;;; TODO: See note about CPU usage
