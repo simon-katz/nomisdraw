@@ -1,9 +1,16 @@
 * TODO
 ** Why is CPU 100% even when no animation?
+*** Ah, Quil is an animation library
+**** If I set the frame rate low, CPU usage is low
+**** The draw function is called repeatedly
 ** The Quil stuff gets slower and slower when making selections from the dropdown
 *** and when Figwheel reloads
 *** (Note that CPU usage only happens when the browser is visible (right?))
 *** Google Chrome Helper goes to 100% when you first select the Quil stuff
 **** and stays at 100% when you switch back from the Quil stuff
+*** Weird because Quil 2.4.0 has this commit:
+When canvas element is reused - destroy previous processing object so…
+https://github.com/quil/quil/commit/be03cdeb61e78ecf4d3e09a5fb8e8d3658631816
+*** Hacky fix: wrap draw function in a check for being unmounted
 ** The dropdown stuff maybe belongs in a re-com-utils ns
 *** (do you have one in piano-xxxx or env-viewer?)
