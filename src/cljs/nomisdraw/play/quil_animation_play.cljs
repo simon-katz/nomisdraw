@@ -18,17 +18,13 @@
                          55
                          55)
               (q/fill 0)
-              (let [tt (* t 100)
+              (let [tt (* t 10)
                     tt (* (rem tt 10000) 0.01)]
                 (q/with-translation [(/ w 2) (/ h 2)]
                   (q/ellipse (* tt (q/sin tt))
                              (* tt (q/cos tt))
                              10
-                             10)))
-              (q/with-translation [(/ w 2) (/ h 2)]
-                (doseq [t (range 0 100 0.01)]
-                  (q/point (* t (q/sin t))
-                           (* t (q/cos t)))))))]
+                             10)))))]
     (qu/sketch-in-reagent canvas-id
                           :setup      initial-state
                           :update     update-state
