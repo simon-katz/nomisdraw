@@ -23,21 +23,25 @@
 ;;;;       functions continue to be called.
 ;;;;       Hacky fix: wrap draw function in a check for being unmounted.
 
-(defn ^:private random-lowercase-string [length]
-  (let [ascii-codes (range 97 123)]
-    (apply str (repeatedly length #(char (rand-nth ascii-codes))))))
-
-(defn ^:private random-canvas-id []
-  (random-lowercase-string 30))
-
 (defn ^:private prevent-horizontal-stretching [elem]
   [re/h-box
    :size "none" ; seems to be the default, but not documented AFAICS
    :children
    [elem]])
 
-(defn ^:private sketch*
-  [canvas-id & {:as sketch-args}]
+(defn sketch
+  "Wraps `quil.core/sketch` and plays nicely with Reagent.
+  Differs from `quil.core/sketch` as follows:
+  - An additional `canvas-id` argument is needed; this is the first argument.
+  - No :host argument is permitted. This function creates its own canvas.
+  - The :size argument must be either `nil` or a [width height] vector."
+  ;; Thoughts on the canvas id:
+  ;; (1) You might think we could create our own unique canvas id.
+  ;;     But no -- that would break re-rendering.
+  ;; (2) You might think this could be done with a macro that creates the
+  ;;     canvas id at compile time.
+  ;;     But no -- the same call site can create multiple sketches.
+  [canvas-id & {:as sketch-args}] ; TODO: Either :canvas-id should be :host, or a new keyword arg
   (assert (not (contains? sketch-args :host))
           ":host arg not permitted (because host is being created here)")
   (assert (contains? sketch-args :draw)) ; otherwise could get confusing errors
