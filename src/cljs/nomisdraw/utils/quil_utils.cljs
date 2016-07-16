@@ -6,7 +6,7 @@
   (:require-macros [cljs.core.async.macros :as a]))
 
 ;;;; Making Quil work well with Reagent...
-;;;; - This core idea comes from
+;;;; - I got the core idea from skrat's answer at
 ;;;;   http://stackoverflow.com/questions/33345084/quil-sketch-on-a-reagent-canvas
 ;;;; - I've made it more functional.
 
