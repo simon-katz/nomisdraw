@@ -59,6 +59,9 @@
                     [(* r (q/sin (* t 0.2)))
                      (* r (q/cos (* t 0.2)))]))))
 
+;;;; TODO: Can you have the draw function called only once?
+;;;;       The above examples waste CPU.
+
 ;;;; ---------------------------------------------------------------------------
 ;;;; Animation
 
