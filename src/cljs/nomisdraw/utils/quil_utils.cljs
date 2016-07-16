@@ -17,6 +17,7 @@
 ;;;;       reload)), Quil 2.4.0 is supposed to destroy the previous processing
 ;;;;       object.
 ;;;;       See commit https://github.com/quil/quil/commit/be03cdeb61e78ecf4d3e09a5fb8e8d3658631816.
+;;;;       (Is that supposed to completely get rid of the sketch?)
 ;;;        But I find the browser gets slower and slower and CPU usage
 ;;;;       gets higher and higher. That's because the previous sketches' draw
 ;;;;       functions continue to be called.
