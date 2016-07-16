@@ -33,6 +33,7 @@
   ;; TODO: Add doc.
   (assert (not (contains? sketch-args :host))
           ":host arg not permitted (because host is being created here)")
+  (assert (contains? sketch-args :draw))
   (let [size            (:size sketch-args)
         _               (assert (or (nil? size)
                                     (and (vector? size)
