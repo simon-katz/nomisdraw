@@ -20,9 +20,9 @@
                          :label "Nested re-com can be slow"
                          :fun slowness-play/render}])
 
-(def ^:private selected-demo-id (r/atom (-> choices
-                                            first
-                                            :id)))
+(defonce ^:private selected-demo-id (r/atom (-> choices
+                                                first
+                                                :id)))
 
 (defn ^:private render-choices []
   [re/v-box
