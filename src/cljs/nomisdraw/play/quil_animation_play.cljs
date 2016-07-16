@@ -1,5 +1,5 @@
 (ns nomisdraw.play.quil-animation-play
-  (:require [nomisdraw.utils.quil-utils :as qu]
+  (:require [nomisdraw.utils.quil-on-reagent :as qor]
             [quil.core :as q :include-macros true]
             [quil.middleware :as m]
             [re-com.core :as re]))
@@ -25,12 +25,12 @@
                              (* tt (q/cos tt))
                              10
                              10)))))]
-    (qu/sketch-in-reagent canvas-id
-                          :setup      initial-state
-                          :update     update-state
-                          :draw       draw
-                          :middleware [m/fun-mode]
-                          :size       [w h])))
+    (qor/sketch-in-reagent canvas-id
+                           :setup      initial-state
+                           :update     update-state
+                           :draw       draw
+                           :middleware [m/fun-mode]
+                           :size       [w h])))
 
 (defn render []
   [re/v-box
