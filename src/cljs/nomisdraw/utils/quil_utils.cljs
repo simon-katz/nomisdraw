@@ -57,6 +57,8 @@
           :component-did-mount    (fn []
                                     ;; Use a go block so that the canvas exists
                                     ;; before we attach the sketch to it.
+                                    ;; (Needed on initial render; not on
+                                    ;; re-render.)
                                     (a/go
                                       (apply q/sketch
                                              (apply concat sketch-args'))))
