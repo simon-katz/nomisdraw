@@ -29,11 +29,20 @@
    :children
    [elem]])
 
-(defn sketch [canvas-id & {:as sketch-args}]
-  ;; TODO: Add doc.
+(defn sketch
+  "Wraps `quil.core/sketch` and plays nicely with Reagent.
+  Differs from `quil.core/sketch` as follows:
+  - An additional `canvas-id` argument is needed; this is the first argument.
+  - No :host argument is permitted. This function creates its own canvas.
+  - The :size argument must be either `nil` or a [width height] vector.
+  (You might think this function could create its own unique canvas id, but
+  that would break re-rendering.)
+  TODO: Ah! -- This can be done with a macro that creates the canvas id at
+  compile time. Now that now that you have unmounting this will be ok."
+  [canvas-id & {:as sketch-args}]
   (assert (not (contains? sketch-args :host))
           ":host arg not permitted (because host is being created here)")
-  (assert (contains? sketch-args :draw))
+  (assert (contains? sketch-args :draw)) ; otherwise could get confusing errors
   (let [size            (:size sketch-args)
         _               (assert (or (nil? size)
                                     (and (vector? size)
