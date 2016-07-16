@@ -1,7 +1,9 @@
 (ns nomisdraw.play.examples-from-quil-intro
-  (:require [nomisdraw.utils.quil-on-reagent :as qor]
+  (:require [nomisdraw.utils.dropdown-and-underling :as dau]
+            [nomisdraw.utils.quil-on-reagent :as qor]
             [quil.core :as q :include-macros true]
             [quil.middleware :as m]
+            [reagent.core :as r]
             [re-com.core :as re]))
 
 ;;;; Working through https://nbeloglazov.com/2014/05/29/quil-intro.html
@@ -88,10 +90,22 @@
 
 ;;;; ---------------------------------------------------------------------------
 
+(def ^:private choices [{:id :example-1
+                         :label "Example 1"
+                         :fun example-001}
+                        {:id :example-2
+                         :label "Example 2"
+                         :fun example-002}
+                        {:id :example-3
+                         :label "Example 3"
+                         :fun example-003}
+                        {:id :example-4
+                         :label "Example 4"
+                         :fun example-004}])
+
+(defonce ^:private selected-demo-id-atom (r/atom (-> choices
+                                                     first
+                                                     :id)))
+
 (defn render []
-  [re/v-box
-   :children
-   [[example-001]
-    [example-002]
-    [example-003]
-    [example-004]]])
+  [dau/render-choices choices selected-demo-id-atom])
