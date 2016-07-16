@@ -1,6 +1,6 @@
 (ns nomisdraw.top-level-render
   (:require [nomisdraw.play.quil-animation-play :as qap]
-            [nomisdraw.play.quil-basics :as qb]
+            [nomisdraw.play.examples-from-quil-intro :as qi]
             [nomisdraw.play.re-com-slowness-play :as slowness-play]
             [reagent.core :as r]
             [re-com.core :as re]))
@@ -14,8 +14,8 @@
                          :label "Some Quil Animation Stuff"
                          :fun qap/render}
                         {:id :quil-basics
-                         :label "Quil Basics"
-                         :fun qb/render}
+                         :label "Examples from Quil Intro"
+                         :fun qi/render}
                         {:id :nested-re-com-can-be-slow
                          :label "Nested re-com can be slow"
                          :fun slowness-play/render}])
