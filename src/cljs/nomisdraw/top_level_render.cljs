@@ -1,7 +1,8 @@
 (ns nomisdraw.top-level-render
-  (:require [nomisdraw.play.quil-animation-play :as qap]
-            [nomisdraw.play.examples-from-quil-intro :as qi]
+  (:require [nomisdraw.play.examples-from-quil-intro :as qi]
+            [nomisdraw.play.quil-animation-play :as qap]
             [nomisdraw.play.re-com-slowness-play :as slowness-play]
+            [nomisdraw.utils.dropdown-and-underling :as dau]
             [reagent.core :as r]
             [re-com.core :as re]))
 
@@ -20,34 +21,13 @@
                          :label "Nested re-com can be slow"
                          :fun slowness-play/render}])
 
-(defonce ^:private selected-demo-id (r/atom (-> choices
-                                                first
-                                                :id)))
-
-(defn ^:private render-choices []
-  [re/v-box
-   :width     "700px"
-   :gap       "10px"
-   :children  [[re/h-box
-                :gap      "10px"
-                :align    :center
-                :children [[re/label :label "Select a demo"]
-                           [re/single-dropdown
-                            :choices   choices
-                            :model     selected-demo-id
-                            :width     "300px"
-                            :on-change #(reset! selected-demo-id %)]]]
-               [re/gap :size "0px"] ;; Force a bit more space here
-               (let [fun (->> choices
-                              (filter #(= @selected-demo-id
-                                          (:id %)))
-                              first
-                              :fun)]
-                 [fun])]])
+(defonce ^:private selected-demo-id-atom (r/atom (-> choices
+                                                     first
+                                                     :id)))
 
 (defn render []
   [re/v-box
    :style (style-for-top-level-div)
    :children
    [[:h1 "Nomisdraw"]
-    [render-choices]]])
+    [dau/render-choices choices selected-demo-id-atom]]])
