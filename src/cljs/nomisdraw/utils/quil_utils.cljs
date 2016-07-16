@@ -59,8 +59,7 @@
                                     ;; before we attach the sketch to it.
                                     (a/go
                                       (apply q/sketch
-                                             (apply concat
-                                                    (into [] sketch-args')))))
+                                             (apply concat sketch-args'))))
           :component-will-unmount (fn []
                                     (reset! unmounted?-atom true))}]
         prevent-horizontal-stretching)))
