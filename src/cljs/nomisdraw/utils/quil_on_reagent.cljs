@@ -31,9 +31,12 @@
 
 (defn sketch
   "Wraps `quil.core/sketch` and plays nicely with Reagent.
+  Returns a component that wraps a canvas that hosts the sketch.
   Differs from `quil.core/sketch` as follows:
-  - An additional `canvas-id` argument is needed; this is the first argument.
-  - No :host argument is permitted. This function creates its own canvas.
+  - Creates the canvas that will host the sketch (rather than the host canvas
+    having to be created separately).
+    So the `:host` argument is interpreted as the id of the canvas that will be
+    created, rather than the id of an already-existing canvas.
   - The :size argument must be either `nil` or a [width height] vector."
   ;; Thoughts on the canvas id:
   ;; (1) You might think we could create our own unique canvas id.
@@ -41,10 +44,9 @@
   ;; (2) You might think this could be done with a macro that creates the
   ;;     canvas id at compile time.
   ;;     But no -- the same call site can create multiple sketches.
-  [canvas-id & {:as sketch-args}] ; TODO: Either :canvas-id should be :host, or a new keyword arg
-  (assert (not (contains? sketch-args :host))
-          ":host arg not permitted (because host is being created here)")
-  (assert (contains? sketch-args :draw)) ; otherwise could get confusing errors
+  [& {:as sketch-args}]
+  (assert (contains? sketch-args :host))
+  (assert (contains? sketch-args :draw))
   (let [size            (:size sketch-args)
         _               (assert (or (nil? size)
                                     (and (vector? size)
@@ -52,6 +54,7 @@
                                 (str ":size should be nil or a vector of size 2, but it is "
                                      size))
         [w h]           size
+        canvas-id       (:host sketch-args)
         canvas-tag-&-id (keyword (str "canvas#" canvas-id))
         unmounted?-atom (atom false) ; see reusing-of-canvas-elements
         draw            (:draw sketch-args)
@@ -59,8 +62,7 @@
                           (when-not @unmounted?-atom
                             (apply draw args)))
         sketch-args'    (merge sketch-args
-                               {:draw draw'
-                                :host canvas-id})]
+                               {:draw draw'})]
     (-> [r/create-class
          {:reagent-render         (fn []
                                     [canvas-tag-&-id {:width  w

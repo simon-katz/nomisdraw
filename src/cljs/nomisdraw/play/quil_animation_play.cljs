@@ -25,7 +25,7 @@
                              (* tt (q/cos tt))
                              10
                              10)))))]
-    (qor/sketch canvas-id
+    (qor/sketch :host       canvas-id
                 :setup      initial-state
                 :update     update-state
                 :draw       draw
