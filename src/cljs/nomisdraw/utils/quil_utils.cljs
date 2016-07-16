@@ -47,7 +47,9 @@
         draw'           (fn [& args]
                           (when-not @unmounted?-atom
                             (apply draw args)))
-        sketch-args'    (assoc sketch-args :draw draw')]
+        sketch-args'    (merge sketch-args
+                               {:draw draw'
+                                :host canvas-id})]
     (-> [r/create-class
          {:reagent-render         (fn []
                                     [canvas-tag-&-id {:width  w
@@ -57,9 +59,8 @@
                                     ;; before we attach the sketch to it.
                                     (a/go
                                       (apply q/sketch
-                                             (concat (apply concat
-                                                            (into [] sketch-args'))
-                                                     [:host canvas-id]))))
+                                             (apply concat
+                                                    (into [] sketch-args')))))
           :component-will-unmount (fn []
                                     (reset! unmounted?-atom true))}]
         prevent-horizontal-stretching)))
