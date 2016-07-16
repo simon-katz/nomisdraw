@@ -31,12 +31,12 @@
 
 (defn sketch
   "Wraps `quil.core/sketch` and plays nicely with Reagent.
-  Returns a component that wraps a canvas that hosts the sketch.
+  Below, C = the canvas that will host the sketch.
   Differs from `quil.core/sketch` as follows:
-  - Creates the canvas that will host the sketch (rather than the host canvas
-    having to be created separately).
-    So the `:host` argument is interpreted as the id of the canvas that will be
-    created, rather than the id of an already-existing canvas.
+  - Creates C (rather than C having to be created separately), and the
+   `:host` argument is the id of the canvas that will be created (rather
+    than the id of an already-existing canvas).
+  - Returns a component that wraps C.
   - The :size argument must be either `nil` or a [width height] vector."
   ;; Thoughts on the canvas id:
   ;; (1) You might think we could create our own unique canvas id.
