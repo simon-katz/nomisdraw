@@ -25,12 +25,12 @@
                              (* tt (q/cos tt))
                              10
                              10)))))]
-    (qor/sketch-in-reagent canvas-id
-                           :setup      initial-state
-                           :update     update-state
-                           :draw       draw
-                           :middleware [m/fun-mode]
-                           :size       [w h])))
+    (qor/sketch canvas-id
+                :setup      initial-state
+                :update     update-state
+                :draw       draw
+                :middleware [m/fun-mode]
+                :size       [w h])))
 
 (defn render []
   [re/v-box

@@ -29,7 +29,7 @@
    :children
    [elem]])
 
-(defn sketch-in-reagent [canvas-id & {:as sketch-args}]
+(defn sketch [canvas-id & {:as sketch-args}]
   ;; TODO: Add doc.
   (assert (not (contains? sketch-args :host))
           ":host arg not permitted (because host is being created here)")
