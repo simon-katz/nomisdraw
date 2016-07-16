@@ -1,10 +1,10 @@
 (ns nomisdraw.play.quil-animation-play
-  (:require [nomisdraw.utils.quil-on-reagent :as qor]
+  (:require [nomisdraw.utils.quil-on-reagent :as qor :include-macros true]
             [quil.core :as q :include-macros true]
             [quil.middleware :as m]
             [re-com.core :as re]))
 
-(defn ^:private my-sketch [canvas-id w h]
+(defn ^:private my-sketch [w h]
   (letfn [(initial-state []
             {:time 1})
           (update-state [state]
@@ -25,8 +25,7 @@
                              (* tt (q/cos tt))
                              10
                              10)))))]
-    (qor/sketch canvas-id
-                :setup      initial-state
+    (qor/sketch :setup      initial-state
                 :update     update-state
                 :draw       draw
                 :middleware [m/fun-mode]
@@ -37,5 +36,4 @@
    :children
    (for [i (range 2)]
      ^{:key i}
-     (my-sketch (str "my-sketch-" i)
-                200 400))])
+     (my-sketch 200 400))])
