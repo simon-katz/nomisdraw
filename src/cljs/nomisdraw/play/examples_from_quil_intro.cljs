@@ -58,7 +58,12 @@
 (defn example-3 [canvas-id]
   (make-example canvas-id
                 (fn [t]
-                  (let [r (* 200 (q/sin t) (q/cos t))]
+                  (let [r (case 1
+                            1 (* 200 (q/sin t) (q/cos t))
+                            2 (* 100 (q/sin t))
+                            3 (* 100 (q/cos t))
+                            4 (* 100 (q/tan t))
+                            5 100)]
                     [(* r (q/sin (* t 0.2)))
                      (* r (q/cos (* t 0.2)))]))))
 
