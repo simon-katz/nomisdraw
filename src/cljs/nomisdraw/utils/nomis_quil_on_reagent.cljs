@@ -22,6 +22,9 @@
 ;;;;       gets higher and higher. That's because the previous sketches' draw
 ;;;;       functions continue to be called.
 ;;;;       Hacky fix: wrap draw function in a check for being unmounted.
+;;;;       TODO: This isn't working -- even though the draw function for an
+;;;;             unmounted sketch returns immediately, things still get too slow
+;;;;             just from changing what's being displayed.
 
 (defn ^:private prevent-horizontal-stretching [elem]
   [re/h-box
