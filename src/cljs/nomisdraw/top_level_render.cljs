@@ -2,7 +2,7 @@
   (:require [nomisdraw.play.examples-from-quil-intro :as qi]
             [nomisdraw.play.quil-animation-play :as qap]
             [nomisdraw.play.re-com-slowness-play :as slowness-play]
-            [nomisdraw.utils.dropdown-and-underling :as dau]
+            [nomisdraw.utils.nomis-re-utils :as reu]
             [reagent.core :as r]
             [re-com.core :as re]))
 
@@ -16,7 +16,7 @@
    :style (style-for-top-level-div)
    :children
    [[:h1 "Nomisdraw"]
-    [dau/dropdown-and-chosen-item [{:id :quil-basics
+    [reu/dropdown-and-chosen-item [{:id :quil-basics
                                     :label "Examples from Quil Intro"
                                     :fun #'qi/render}
                                    {:id :some-quil-animation-stuff

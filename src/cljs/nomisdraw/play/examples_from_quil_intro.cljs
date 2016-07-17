@@ -1,5 +1,5 @@
 (ns nomisdraw.play.examples-from-quil-intro
-  (:require [nomisdraw.utils.dropdown-and-underling :as dau]
+  (:require [nomisdraw.utils.nomis-re-utils :as reu]
             [nomisdraw.utils.quil-on-reagent :as qor]
             [quil.core :as q :include-macros true]
             [quil.middleware :as m]
@@ -110,7 +110,7 @@
 (defn render []
   [re/v-box
    :children
-   [[dau/dropdown-and-chosen-item [{:id :something-that-uses-no-ongoing-cpu
+   [[reu/dropdown-and-chosen-item [{:id :something-that-uses-no-ongoing-cpu
                                     :label "Low CPU usage"
                                     :fun #'something-that-uses-no-ongoing-cpu}
                                    {:id :example-1a
@@ -125,7 +125,7 @@
                                    {:id :example-4a
                                     :label "Example 4a"
                                     :fun #'example-4a}]]
-    [dau/dropdown-and-chosen-item [{:id :something-that-uses-no-ongoing-cpu
+    [reu/dropdown-and-chosen-item [{:id :something-that-uses-no-ongoing-cpu
                                     :label "Low CPU usage"
                                     :fun #'something-that-uses-no-ongoing-cpu}
                                    {:id :example-1b
