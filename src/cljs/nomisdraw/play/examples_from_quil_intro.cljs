@@ -93,22 +93,16 @@
 
 ;;;; ---------------------------------------------------------------------------
 
-(def ^:private choices [{:id :example-1
-                         :label "Example 1"
-                         :fun example-001}
-                        {:id :example-2
-                         :label "Example 2"
-                         :fun example-002}
-                        {:id :example-3
-                         :label "Example 3"
-                         :fun example-003}
-                        {:id :example-4
-                         :label "Example 4"
-                         :fun example-004}])
-
-(defonce ^:private selected-demo-id-atom (r/atom (-> choices
-                                                     first
-                                                     :id)))
-
 (defn render []
-  [dau/render-choices choices selected-demo-id-atom])
+  [dau/render-choices [{:id :example-1
+                        :label "Example 1"
+                        :fun #'example-001}
+                       {:id :example-2
+                        :label "Example 2"
+                        :fun #'example-002}
+                       {:id :example-3
+                        :label "Example 3"
+                        :fun #'example-003}
+                       {:id :example-4
+                        :label "Example 4"
+                        :fun #'example-004}]])
