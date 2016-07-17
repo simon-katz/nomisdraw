@@ -2,15 +2,6 @@
   (:require [reagent.core :as r]
             [re-com.core :as re]))
 
-;;; TODO: Currently trying to make this work nicely with interactive
-;;;       development.
-;;;       Pros and cons:
-;;;       - Pros
-;;;         - More modular
-;;;       - Cons
-;;;         - The def of the options:
-;;;           - must #' the `:fun` values
-
 ;;; TODO: Doc.
 ;;;       Including:
 ;;;       - The `:fun`s need to be #'-d for interactive development.
