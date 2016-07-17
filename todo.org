@@ -1,3 +1,4 @@
 * TODO
-** The dropdown stuff maybe belongs in a re-com-utils ns
-*** (do you have one in piano-xxxx or env-viewer?)
+** Do you have another re-com-utils ns somewhere?
+*** piano-xxxx?
+*** env-viewer?
