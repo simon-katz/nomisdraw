@@ -14,7 +14,7 @@
 (defn something-that-uses-no-ongoing-cpu []
   [:p "Quil sketches can use up a lot of CPU time. This text doesn't."])
 
-(defn example-001 []
+(defn example-1 [canvas-id]
   (letfn [(draw []
             (q/frame-rate 0.1)
             
@@ -31,7 +31,7 @@
                          (* t (q/cos t))))))]
     (qor/sketch :size [300 300]
                 :draw draw
-                :host "quil-intro-example-001")))
+                :host canvas-id)))
 
 (defn make-example [canvas-id f]
   (letfn [(draw-plot [f from to step]
@@ -49,14 +49,14 @@
                 :draw draw
                 :host canvas-id)))
 
-(defn example-002 []
-  (make-example "quil-intro-example-002"
+(defn example-2 [canvas-id]
+  (make-example canvas-id
                 (fn [t]
                   [(* t (q/sin t))
                    (* t (q/cos t))])))
 
-(defn example-003 []
-  (make-example "quil-intro-example-003"
+(defn example-3 [canvas-id]
+  (make-example canvas-id
                 (fn [t]
                   (let [r (* 200 (q/sin t) (q/cos t))]
                     [(* r (q/sin (* t 0.2)))
@@ -68,7 +68,7 @@
 ;;;; ---------------------------------------------------------------------------
 ;;;; Animation
 
-(defn example-004 []
+(defn example-4 [canvas-id]
   (letfn [(f [t]
             (let [r (* 200 (q/sin t) (q/cos t))]
               [(* r (q/sin (* t 0.2)))
@@ -92,23 +92,51 @@
     (qor/sketch :size [300 300]
                 :setup setup
                 :draw draw
-                :host "quil-intro-example-004")))
+                :host canvas-id)))
 
 ;;;; ---------------------------------------------------------------------------
 
+
+(defn example-1a [] (example-1 "quil-intro-example-1a"))
+(defn example-2a [] (example-2 "quil-intro-example-2a"))
+(defn example-3a [] (example-3 "quil-intro-example-3a"))
+(defn example-4a [] (example-4 "quil-intro-example-4a"))
+
+(defn example-1b [] (example-1 "quil-intro-example-1b"))
+(defn example-2b [] (example-2 "quil-intro-example-2b"))
+(defn example-3b [] (example-3 "quil-intro-example-3b"))
+(defn example-4b [] (example-4 "quil-intro-example-4b"))
+
 (defn render []
-  [dau/dropdown-and-chosen-item [{:id :something-that-uses-no-ongoing-cpu
-                                  :label "Low CPU usage"
-                                  :fun something-that-uses-no-ongoing-cpu}
-                                 {:id :example-1
-                                  :label "Example 1"
-                                  :fun #'example-001}
-                                 {:id :example-2
-                                  :label "Example 2"
-                                  :fun #'example-002}
-                                 {:id :example-3
-                                  :label "Example 3"
-                                  :fun #'example-003}
-                                 {:id :example-4
-                                  :label "Example 4"
-                                  :fun #'example-004}]])
+  [re/v-box
+   :children
+   [[dau/dropdown-and-chosen-item [{:id :something-that-uses-no-ongoing-cpu
+                                    :label "Low CPU usage"
+                                    :fun #'something-that-uses-no-ongoing-cpu}
+                                   {:id :example-1a
+                                    :label "Example 1a"
+                                    :fun #'example-1a}
+                                   {:id :example-2a
+                                    :label "Example 2a"
+                                    :fun #'example-2a}
+                                   {:id :example-3a
+                                    :label "Example 3a"
+                                    :fun #'example-3a}
+                                   {:id :example-4a
+                                    :label "Example 4a"
+                                    :fun #'example-4a}]]
+    [dau/dropdown-and-chosen-item [{:id :something-that-uses-no-ongoing-cpu
+                                    :label "Low CPU usage"
+                                    :fun #'something-that-uses-no-ongoing-cpu}
+                                   {:id :example-1b
+                                    :label "Example 1b"
+                                    :fun #'example-1b}
+                                   {:id :example-2b
+                                    :label "Example 2b"
+                                    :fun #'example-2b}
+                                   {:id :example-3b
+                                    :label "Example 3b"
+                                    :fun #'example-3b}
+                                   {:id :example-4b
+                                    :label "Example 4b"
+                                    :fun #'example-4b}]]]])
