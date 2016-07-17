@@ -1,4 +1,4 @@
-(ns nomisdraw.utils.quil-on-reagent
+(ns nomisdraw.utils.nomis-quil-on-reagent
   (:require [cljs.core.async :as a]
             [quil.core :as q :include-macros true]
             [reagent.core :as r]

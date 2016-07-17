@@ -1,5 +1,5 @@
 (ns nomisdraw.play.quil-animation-play
-  (:require [nomisdraw.utils.quil-on-reagent :as qor]
+  (:require [nomisdraw.utils.nomis-quil-on-reagent :as qor]
             [quil.core :as q :include-macros true]
             [quil.middleware :as m]
             [re-com.core :as re]))
