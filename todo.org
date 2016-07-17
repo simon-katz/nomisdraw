@@ -5,3 +5,4 @@
 ** Maybe move `nomisdraw.utils.nomis-quil-on-reagent` to a library
 *** and reply at
 **** http://stackoverflow.com/questions/33345084/quil-sketch-on-a-reagent-canvas
+*** Would be good not to use re-com there
