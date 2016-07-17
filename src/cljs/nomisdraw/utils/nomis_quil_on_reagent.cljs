@@ -10,8 +10,7 @@
 ;;;; Making Quil work well with Reagent...
 ;;;; - I got the core idea from skrat's answer at
 ;;;;   http://stackoverflow.com/questions/33345084/quil-sketch-on-a-reagent-canvas
-;;;; - I've made it more functional. And quite a lot more fiddling to make it
-;;;;   work fully.
+;;;; - I've made it more functional.
 
 (defn ^:private prevent-horizontal-stretching [elem]
   [re/h-box
