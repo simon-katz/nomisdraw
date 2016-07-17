@@ -11,6 +11,9 @@
 ;;;; ---------------------------------------------------------------------------
 ;;;; Static images
 
+(defn something-that-uses-no-ongoing-cpu []
+  [:p "Quil sketches can use up a lot of CPU time. This text doesn't."])
+
 (defn example-001 []
   (letfn [(draw []
             (q/frame-rate 0.1)
@@ -94,7 +97,10 @@
 ;;;; ---------------------------------------------------------------------------
 
 (defn render []
-  [dau/dropdown-and-chosen-item [{:id :example-1
+  [dau/dropdown-and-chosen-item [{:id :something-that-uses-no-ongoing-cpu
+                                  :label "Low CPU usage"
+                                  :fun something-that-uses-no-ongoing-cpu}
+                                 {:id :example-1
                                   :label "Example 1"
                                   :fun #'example-001}
                                  {:id :example-2
