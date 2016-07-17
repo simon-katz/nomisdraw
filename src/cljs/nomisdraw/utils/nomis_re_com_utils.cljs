@@ -1,4 +1,4 @@
-(ns nomisdraw.utils.nomis-re-utils
+(ns nomisdraw.utils.nomis-re-com-utils
   (:require [reagent.core :as r]
             [re-com.core :as re]))
 

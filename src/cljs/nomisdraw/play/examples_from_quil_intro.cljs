@@ -1,5 +1,5 @@
 (ns nomisdraw.play.examples-from-quil-intro
-  (:require [nomisdraw.utils.nomis-re-utils :as reu]
+  (:require [nomisdraw.utils.nomis-re-com-utils :as reu]
             [nomisdraw.utils.nomis-quil-on-reagent :as qor]
             [quil.core :as q :include-macros true]
             [quil.middleware :as m]

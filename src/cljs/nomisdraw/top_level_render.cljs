@@ -2,7 +2,7 @@
   (:require [nomisdraw.play.examples-from-quil-intro :as qi]
             [nomisdraw.play.quil-animation-play :as qap]
             [nomisdraw.play.re-com-slowness-play :as slowness-play]
-            [nomisdraw.utils.nomis-re-utils :as reu]
+            [nomisdraw.utils.nomis-re-com-utils :as reu]
             [reagent.core :as r]
             [re-com.core :as re]))
 
