@@ -16,12 +16,12 @@
    :style (style-for-top-level-div)
    :children
    [[:h1 "Nomisdraw"]
-    [dau/render-choices [{:id :some-quil-animation-stuff
-                          :label "Some Quil Animation Stuff"
-                          :fun #'qap/render}
-                         {:id :quil-basics
-                          :label "Examples from Quil Intro"
-                          :fun #'qi/render}
-                         {:id :nested-re-com-can-be-slow
-                          :label "Nested re-com can be slow"
-                          :fun #'slowness-play/render}]]]])
+    [dau/dropdown-and-chosen-item [{:id :some-quil-animation-stuff
+                                    :label "Some Quil Animation Stuff"
+                                    :fun #'qap/render}
+                                   {:id :quil-basics
+                                    :label "Examples from Quil Intro"
+                                    :fun #'qi/render}
+                                   {:id :nested-re-com-can-be-slow
+                                    :label "Nested re-com can be slow"
+                                    :fun #'slowness-play/render}]]]])

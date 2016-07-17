@@ -34,9 +34,9 @@
                 a)
          a))))
 
-(defn render-choices
+(defn dropdown-and-chosen-item
   ([choices]
-   (render-choices choices ::default))
+   (dropdown-and-chosen-item choices ::default))
   ([choices uniquifier]
    (let [selected-id-atom (choices-&-uniquifier>selected-id-atom choices
                                                                  uniquifier)]
