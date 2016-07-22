@@ -11,22 +11,25 @@
 ;;;;   http://stackoverflow.com/questions/33345084/quil-sketch-on-a-reagent-canvas
 ;;;; - I've made it more functional.
 
+(defn ^:private random-lowercase-string [length]
+  (let [ascii-codes (range 97 123)]
+    (apply str (repeatedly length #(char (rand-nth ascii-codes))))))
+
+(defn ^:private random-canvas-id []
+  (random-lowercase-string 40))
+
 (defn sketch
   "Wraps `quil.core/sketch` and plays nicely with Reagent.
   Below, C = the canvas that will host the sketch.
   Differs from `quil.core/sketch` as follows:
-  - Creates C (rather than C having to be created separately), and the
-   `:host` argument is the id of the canvas that will be created (rather
-    than the id of an already-existing canvas).
+  - Creates C (rather than C having to be created separately).
+  - The `:host` argument must not be provided. (Instead, a unique canvas id is
+    created.)
   - Returns a component that wraps C.
   - The :size argument must be either `nil` or a [width height] vector."
-  ;; Thoughts on the canvas id:
-  ;; (1) You might think we could create our own unique canvas id.
-  ;;     But no -- that would break re-rendering.
-  ;; (2) You might think this could be done with a macro that creates the
-  ;;     canvas id at compile time.
-  ;;     But no -- the same call site can create multiple sketches.
   [& {:as sketch-args}]
+  (assert (not (contains? sketch-args :host))
+          ":host should not be provided, because a unique canvas id will be created")
   (let [size            (:size sketch-args)
         _               (assert (or (nil? size)
                                     (and (vector? size)
@@ -34,10 +37,10 @@
                                 (str ":size should be nil or a vector of size 2, but it is "
                                      size))
         [w h]           size
-        canvas-id       (do 
-                          (assert (contains? sketch-args :host))
-                          (:host sketch-args))
-        canvas-tag-&-id (keyword (str "canvas#" canvas-id))]
+        canvas-id       (random-canvas-id)
+        canvas-tag-&-id (keyword (str "canvas#" canvas-id))
+        sketch-args*    (merge sketch-args 
+                               {:host canvas-id})]
     [r/create-class
      {:reagent-render
       (fn []
@@ -54,7 +57,7 @@
         ;; to it. (Needed on initial render; not on re-render.)
         (a/go
           (apply q/sketch
-                 (apply concat sketch-args))))
+                 (apply concat sketch-args*))))
       ;;
       :component-will-unmount
       (fn []
