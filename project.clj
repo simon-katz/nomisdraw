@@ -9,7 +9,7 @@
                  [prismatic/schema "1.0.4"]
                  [org.clojure/core.async "0.2.385"]
                  [com.stuartsierra/component "0.3.1"]
-                 [com.taoensso/timbre "4.3.1"]
+                 [com.taoensso/timbre "4.7.0"]
                  [cljs-ajax "0.5.3"]
                  [environ "1.0.1"]
                  [reagent "0.6.0-rc"]
