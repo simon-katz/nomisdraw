@@ -41,17 +41,17 @@
     [r/create-class
      {:reagent-render
       (fn []
-        [canvas-tag-&-id {:style {;; Prevent stretching when used in flex container (I don't really understand, but never mind).
+        [canvas-tag-&-id {:style {;; Prevent stretching when used in
+                                  ;; flex container. (I don't really
+                                  ;; understand, but never mind).
                                   :max-width w}
                           :width  w
                           :height h}])
       ;;
       :component-did-mount
       (fn []
-        ;; Use a go block so that the canvas exists
-        ;; before we attach the sketch to it.
-        ;; (Needed on initial render; not on
-        ;; re-render.)
+        ;; Use a go block so that the canvas exists before we attach the sketch
+        ;; to it. (Needed on initial render; not on re-render.)
         (a/go
           (apply q/sketch
                  (apply concat sketch-args))))
