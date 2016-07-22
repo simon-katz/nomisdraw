@@ -3,20 +3,13 @@
             [goog.dom :as dom]
             [quil.core :as q :include-macros true]
             [quil.sketch :as qs-maybe-non-api]
-            [reagent.core :as r]
-            [re-com.core :as re])
+            [reagent.core :as r])
   (:require-macros [cljs.core.async.macros :as a]))
 
 ;;;; Making Quil work well with Reagent...
 ;;;; - I got the core idea from skrat's answer at
 ;;;;   http://stackoverflow.com/questions/33345084/quil-sketch-on-a-reagent-canvas
 ;;;; - I've made it more functional.
-
-(defn ^:private prevent-horizontal-stretching [elem]
-  [re/h-box
-   :size "none" ; seems to be the default, but not documented AFAICS
-   :children
-   [elem]])
 
 (defn sketch
   "Wraps `quil.core/sketch` and plays nicely with Reagent.
@@ -45,20 +38,21 @@
                           (assert (contains? sketch-args :host))
                           (:host sketch-args))
         canvas-tag-&-id (keyword (str "canvas#" canvas-id))]
-    (-> [r/create-class
-         {:reagent-render         (fn []
-                                    [canvas-tag-&-id {:width  w
-                                                      :height h}])
-          :component-did-mount    (fn []
-                                    ;; Use a go block so that the canvas exists
-                                    ;; before we attach the sketch to it.
-                                    ;; (Needed on initial render; not on
-                                    ;; re-render.)
-                                    (a/go
-                                      (apply q/sketch
-                                             (apply concat sketch-args))))
-          :component-will-unmount (fn []
-                                    (-> canvas-id
-                                        dom/getElement
-                                        qs-maybe-non-api/destroy-previous-sketch))}]
-        prevent-horizontal-stretching)))
+    [r/create-class
+     {:reagent-render         (fn []
+                                [canvas-tag-&-id {:style {;; Prevent stretching when used in flex container (I don't really understand, but never mind).
+                                                          :max-width w}
+                                                  :width  w
+                                                  :height h}])
+      :component-did-mount    (fn []
+                                ;; Use a go block so that the canvas exists
+                                ;; before we attach the sketch to it.
+                                ;; (Needed on initial render; not on
+                                ;; re-render.)
+                                (a/go
+                                  (apply q/sketch
+                                         (apply concat sketch-args))))
+      :component-will-unmount (fn []
+                                (-> canvas-id
+                                    dom/getElement
+                                    qs-maybe-non-api/destroy-previous-sketch))}]))
