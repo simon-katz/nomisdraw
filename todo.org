@@ -2,6 +2,8 @@
 ** Do you have another re-com-utils ns somewhere?
 *** piano-xxxx?
 *** env-viewer?
+** Maybe ask for `qs-maybe-non-api/destroy-previous-sketch` to be part of the API
+*** (or if he has other suggestions...)
 ** Maybe move `nomisdraw.utils.nomis-quil-on-reagent` to a library
 *** and reply at
 **** http://stackoverflow.com/questions/33345084/quil-sketch-on-a-reagent-canvas
