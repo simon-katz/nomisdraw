@@ -1,6 +1,5 @@
 (ns nomisdraw.utils.nomis-quil-on-reagent
   (:require [cljs.core.async :as a]
-            [goog.dom :as dom]
             [quil.core :as q :include-macros true]
             [reagent.core :as r]
             [taoensso.timbre :as timbre])
