@@ -116,7 +116,7 @@
                    :label "Example 4"
                    :fun #'example-4}]]
      (interpose (re/line)
-                (for [i (range 2)]
+                (for [i (range 3)]
                   [reu/dropdown-and-chosen-item
                    :uniquifier i
                    :options    options])))])
