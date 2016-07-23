@@ -98,6 +98,7 @@
 
 (defn render []
   [re/v-box
+   :gap "16px"
    :children
    (let [options [{:id :something-that-uses-no-ongoing-cpu
                    :label "Low CPU usage"
@@ -114,7 +115,8 @@
                   {:id :example-4
                    :label "Example 4"
                    :fun #'example-4}]]
-     (for [i (range 2)]
-       [reu/dropdown-and-chosen-item
-        :uniquifier i
-        :options    options]))])
+     (interpose (re/line)
+                (for [i (range 2)]
+                  [reu/dropdown-and-chosen-item
+                   :uniquifier i
+                   :options    options])))])
