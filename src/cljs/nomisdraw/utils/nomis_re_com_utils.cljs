@@ -25,27 +25,26 @@
                 a)
          a))))
 
-(defn dropdown-and-chosen-item
-  ([options]
-   (dropdown-and-chosen-item options ::default))
-  ([options uniquifier]
-   (let [selected-id-atom (options-&-uniquifier>selected-id-atom options
-                                                                 uniquifier)]
-     [re/v-box
-      :width     "700px"
-      :gap       "10px"
-      :children  [[re/h-box
-                   :gap      "10px"
-                   :align    :center
-                   :children [[re/label :label "Select a demo"]
-                              [re/single-dropdown
-                               :choices   options
-                               :model     selected-id-atom
-                               :width     "300px"
-                               :on-change #(reset! selected-id-atom %)]]]
-                  (let [fun (->> options
-                                 (filter #(= @selected-id-atom
-                                             (:id %)))
-                                 first
-                                 :fun)]
-                    [fun])]])))
+(defn dropdown-and-chosen-item [& {:keys [options
+                                          uniquifier]
+                                   :or {:uniquifier ::default}}]
+  (let [selected-id-atom (options-&-uniquifier>selected-id-atom options
+                                                                uniquifier)]
+    [re/v-box
+     :width     "700px"
+     :gap       "10px"
+     :children  [[re/h-box
+                  :gap      "10px"
+                  :align    :center
+                  :children [[re/label :label "Select a demo"]
+                             [re/single-dropdown
+                              :choices   options
+                              :model     selected-id-atom
+                              :width     "300px"
+                              :on-change #(reset! selected-id-atom %)]]]
+                 (let [fun (->> options
+                                (filter #(= @selected-id-atom
+                                            (:id %)))
+                                first
+                                :fun)]
+                   [fun])]]))

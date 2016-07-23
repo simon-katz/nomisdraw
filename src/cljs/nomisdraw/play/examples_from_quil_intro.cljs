@@ -115,4 +115,6 @@
                    :label "Example 4"
                    :fun #'example-4}]]
      (for [i (range 2)]
-       [reu/dropdown-and-chosen-item options i]))])
+       [reu/dropdown-and-chosen-item
+        :uniquifier i
+        :options    options]))])
