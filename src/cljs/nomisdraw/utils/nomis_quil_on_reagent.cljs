@@ -2,7 +2,8 @@
   (:require [cljs.core.async :as a]
             [goog.dom :as dom]
             [quil.core :as q :include-macros true]
-            [reagent.core :as r])
+            [reagent.core :as r]
+            [taoensso.timbre :as timbre])
   (:require-macros [cljs.core.async.macros :as a]))
 
 ;;;; Making Quil work well with Reagent...
@@ -39,7 +40,8 @@
         canvas-id       (random-canvas-id)
         canvas-tag-&-id (keyword (str "canvas#" canvas-id))
         sketch-args*    (merge sketch-args 
-                               {:host canvas-id})]
+                               {:host canvas-id})
+        saved-sketch-atom (atom ::not-set-yet)]
     [r/create-class
      {:reagent-render
       (fn []
@@ -55,10 +57,17 @@
         ;; Use a go block so that the canvas exists before we attach the sketch
         ;; to it. (Needed on initial render; not on re-render.)
         (a/go
-          (apply q/sketch
-                 (apply concat sketch-args*))))
+          (reset! saved-sketch-atom
+                  (apply q/sketch
+                         (apply concat sketch-args*)))))
       ;;
       :component-will-unmount
       (fn []
-        (q/with-sketch (q/get-sketch-by-id canvas-id)
-          (q/exit)))}]))
+        (a/go-loop []
+          (if (= @saved-sketch-atom ::not-set-yet)
+            (do ; will probably never get here
+              (timbre/info "Waiting for sketch to be created before destroying it")
+              (a/<! (a/timeout 100))
+              (recur))
+            (q/with-sketch @saved-sketch-atom
+              (q/exit)))))}]))
