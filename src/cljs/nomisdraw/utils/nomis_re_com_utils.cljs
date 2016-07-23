@@ -26,11 +26,14 @@
          a))))
 
 (defn dropdown-and-chosen-item [& {:keys [options
-                                          uniquifier]
+                                          uniquifier
+                                          outer-style
+                                          inner-style]
                                    :or {:uniquifier ::default}}]
   (let [selected-id-atom (options-&-uniquifier>selected-id-atom options
                                                                 uniquifier)]
     [re/v-box
+     :style outer-style
      :width     "700px"
      :gap       "10px"
      :children  [[re/h-box
@@ -42,9 +45,12 @@
                               :model     selected-id-atom
                               :width     "300px"
                               :on-change #(reset! selected-id-atom %)]]]
-                 (let [fun (->> options
-                                (filter #(= @selected-id-atom
-                                            (:id %)))
-                                first
-                                :fun)]
-                   [fun])]]))
+                 (re/box
+                  :style inner-style
+                  :child
+                  (let [fun (->> options
+                                 (filter #(= @selected-id-atom
+                                             (:id %)))
+                                 first
+                                 :fun)]
+                    [fun]))]]))
