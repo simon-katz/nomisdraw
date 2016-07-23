@@ -20,7 +20,7 @@
 
 (defn sketch
   "Wraps `quil.core/sketch` and plays nicely with Reagent.
-  Below, C = the canvas that will host the sketch.
+  Let C be the canvas that will host the sketch.
   Differs from `quil.core/sketch` as follows:
   - Creates C (rather than C having to be created separately).
   - The `:host` argument must not be provided. (Instead, a unique canvas id is
