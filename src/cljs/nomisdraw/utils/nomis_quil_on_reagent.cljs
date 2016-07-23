@@ -11,12 +11,13 @@
 ;;;;   http://stackoverflow.com/questions/33345084/quil-sketch-on-a-reagent-canvas
 ;;;; - I've made it more functional.
 
-(defn ^:private random-lowercase-string [length]
-  (let [ascii-codes (range 97 123)]
+(defn ^:private random-alpha-string [length]
+  (let [ascii-codes (concat (range 65 91)
+                            (range 97 123))]
     (apply str (repeatedly length #(char (rand-nth ascii-codes))))))
 
 (defn ^:private random-canvas-id []
-  (random-lowercase-string 40))
+  (random-alpha-string 40))
 
 (defn sketch
   "Wraps `quil.core/sketch` and plays nicely with Reagent.
