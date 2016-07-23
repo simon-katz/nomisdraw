@@ -46,7 +46,7 @@
     [r/create-class
      {:reagent-render
       (fn []
-        (timbre/debug "==== Rendering canvas" canvas-id)
+        (timbre/debug "====" canvas-id "Rendering canvas")
         [canvas-tag-&-id {:style {;; Prevent stretching when used in
                                   ;; flex container. (I don't really
                                   ;; understand, but never mind).
@@ -65,7 +65,7 @@
       ;;
       :component-will-unmount
       (fn []
-        (timbre/debug "==== Unmounting & exiting sketch" canvas-id)
+        (timbre/debug "====" canvas-id "Unmounting & exiting sketch")
         (a/go-loop []
           (if (= @saved-sketch-atom ::not-set-yet)
             (do ; will probably never get here
