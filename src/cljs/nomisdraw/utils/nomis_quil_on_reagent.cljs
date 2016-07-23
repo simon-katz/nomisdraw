@@ -67,10 +67,11 @@
       (fn []
         (timbre/debug "====" canvas-id "Unmounting & exiting sketch")
         (a/go-loop []
-          (if (= @saved-sketch-atom ::not-set-yet)
-            (do ; will probably never get here
-              (timbre/info "Waiting for sketch to be created before destroying it")
-              (a/<! (a/timeout 100))
-              (recur))
-            (q/with-sketch @saved-sketch-atom
-              (q/exit)))))}]))
+          (let [saved-sketch @saved-sketch-atom]
+            (if (= saved-sketch ::not-set-yet)
+              (do ; will probably never get here
+                (timbre/info "Waiting for sketch to be created before destroying it")
+                (a/<! (a/timeout 100))
+                (recur))
+              (q/with-sketch saved-sketch
+                (q/exit))))))}]))
