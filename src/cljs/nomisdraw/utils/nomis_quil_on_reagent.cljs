@@ -2,7 +2,6 @@
   (:require [cljs.core.async :as a]
             [goog.dom :as dom]
             [quil.core :as q :include-macros true]
-            [quil.sketch :as qs-maybe-non-api]
             [reagent.core :as r])
   (:require-macros [cljs.core.async.macros :as a]))
 
@@ -61,6 +60,5 @@
       ;;
       :component-will-unmount
       (fn []
-        (-> canvas-id
-            dom/getElement
-            qs-maybe-non-api/destroy-previous-sketch))}]))
+        (q/with-sketch (q/get-sketch-by-id canvas-id)
+          (q/exit)))}]))
