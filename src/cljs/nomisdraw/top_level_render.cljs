@@ -24,7 +24,7 @@
      :inner-style {:border-style "solid"
                    :border-width "1px"
                    :border-color "grey"
-                   :padding      "4px"}
+                   :padding      "8px"}
      :options     [{:id :quil-basics
                     :label "Examples from Quil Intro"
                     :fun #'qi/render}
