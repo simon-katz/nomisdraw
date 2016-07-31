@@ -85,8 +85,7 @@
           ;; setup initialises sketch and it is called only once
           ;; before draw called for the first time
           (setup []
-            ;; draw will be called 60 times per second
-            (q/frame-rate 60)
+            (q/frame-rate 10)
             ;; set background to white colour only in the setup
             ;; otherwise each invocation of 'draw' would clear sketch completely
             (q/background 255))]
