@@ -12,8 +12,10 @@
 ;;;; ___________________________________________________________________________
 ;;;; Protocols and componentry
 
-(defrecord ^:private WebServer [port
+(defrecord ^:private WebServer [;; Injected
+                                port
                                 handler-maker
+                                ;; Added here
                                 jetty-webserver]
 
   component/Lifecycle
