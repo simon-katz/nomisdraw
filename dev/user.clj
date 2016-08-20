@@ -1,15 +1,22 @@
-(ns user
-  "Namespace to support hacking at the REPL."
+(ns
+    ^{:doc "Namespace to support hacking at the REPL."
+      ;; This is in lieu of using `clojure.tools.namespace.repl/disable-reload!`,
+      ;; which doesn't work well when this ns form is re-evaluated (whether
+      ;; the re-evaluation is done manually or as part of Cider helpfully doing
+      ;; so every time you do e.g. `cider-eval-defun-at-point`).
+      :clojure.tools.namespace.repl/load false}
+    user
   (:require [clojure.java.javadoc :refer [javadoc]]
             [clojure.pprint :refer [pp pprint]]
             [clojure.repl :refer :all ; [apropos dir doc find-doc pst source]
              ]
             [clojure.tools.namespace.move :refer :all]
             [clojure.tools.namespace.repl :refer :all]
-            [com.stuartsierra.component :as component]
+            [com.stuartsierra.component]
             [midje.repl :refer :all]
-            [nomisdraw.system.main :as main]
-            [nomisdraw.system.system :as system]))
+            [nomisdraw.system.main]
+            [clojure.string :as str]
+            [nomisdraw.system.system]))
 
 ;;;; ___________________________________________________________________________
 ;;;; Clojure workflow.
@@ -32,18 +39,18 @@
   "Creates a system and makes it the current development system."
   []
   (alter-var-root #'the-system
-                  (constantly (system/make-system @#'main/config))))
+                  (constantly (nomisdraw.system.system/make-system @#'nomisdraw.system.main/config))))
 
 (defn start
   "Starts the current development system."
   []
-  (alter-var-root #'the-system component/start))
+  (alter-var-root #'the-system com.stuartsierra.component/start))
 
 (defn stop
   "Shuts down and destroys the current development system."
   []
   (alter-var-root #'the-system
-                  (fn [s] (when s (component/stop s)))))
+                  (fn [s] (when s (com.stuartsierra.component/stop s)))))
 
 (defn go
   "Creates a system, makes it the current development system and starts it."
