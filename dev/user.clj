@@ -39,7 +39,9 @@
   "Creates a system and makes it the current development system."
   []
   (alter-var-root #'the-system
-                  (constantly (nomisdraw.system.system/make-system @#'nomisdraw.system.main/config))))
+                  (fn [_]
+                    (nomisdraw.system.system/make-system
+                     @#'nomisdraw.system.main/config))))
 
 (defn start
   "Starts the current development system."
