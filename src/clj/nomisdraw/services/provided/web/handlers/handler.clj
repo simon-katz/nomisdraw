@@ -38,18 +38,10 @@
    ;;
    (route/not-found "Page not found")))
 
-(defn ^:private make-handler []
+(defn make-handler []
   (-> (make-handler*)
       (wrap-exception-and-log ; {:color? true}
        )))
 
 ;;;; ___________________________________________________________________________
 ;;;; Protocols and componentry
-
-(defrecord ^:private HandlerMaker []
-  clojure.lang.IFn
-  (invoke [_]
-    (make-handler)))
-
-(defn make-handler-maker []
-  (map->HandlerMaker {}))

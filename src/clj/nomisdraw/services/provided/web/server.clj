@@ -14,7 +14,7 @@
 
 (defrecord ^:private WebServer [;; Injected
                                 port
-                                handler-maker
+                                handler
                                 ;; Added here
                                 jetty-webserver]
 
@@ -26,7 +26,7 @@
       (do
         (timbre/info "Starting webserver on port" port)
         (let [jw (try
-                   (make-jetty-server-and-run-it (handler-maker)
+                   (make-jetty-server-and-run-it handler
                                                  port)
                    (catch java.net.BindException e
                      (throw (Exception.

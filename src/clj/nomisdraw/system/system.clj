@@ -11,12 +11,10 @@
   [config]
   (component/system-map
 
-   :handler-maker
-   (component/using (handler/make-handler-maker)
-                    [])
+   :handler (handler/make-handler)
 
    :port (get-in config [:http :port])
 
    :webserver (component/using (web.server/make-webserver)
                                [:port
-                                :handler-maker])))
+                                :handler])))
