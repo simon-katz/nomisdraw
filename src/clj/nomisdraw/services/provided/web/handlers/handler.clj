@@ -28,7 +28,7 @@
 
 ;;;; ___________________________________________________________________________
 
-(defn ^:private routes* []
+(defn ^:private make-handler* []
   (compojure.core/routes
    ;;
    (route/resources "/")
@@ -38,8 +38,8 @@
    ;;
    (route/not-found "Page not found")))
 
-(defn ^:private routes []
-  (-> (routes*)
+(defn ^:private make-handler []
+  (-> (make-handler*)
       (wrap-exception-and-log ; {:color? true}
        )))
 
@@ -49,7 +49,7 @@
 (defrecord ^:private HandlerMaker []
   clojure.lang.IFn
   (invoke [_]
-    (routes)))
+    (make-handler)))
 
 (defn make-handler-maker []
   (map->HandlerMaker {}))
