@@ -1,11 +1,4 @@
-(ns
-    ;; ^{:doc "Namespace to support hacking at the REPL."
-    ;;   ;; This is in lieu of using `clojure.tools.namespace.repl/disable-reload!`,
-    ;;   ;; which doesn't work well when this ns form is re-evaluated (whether
-    ;;   ;; the re-evaluation is done manually or as part of Cider helpfully doing
-    ;;   ;; so every time you do e.g. `cider-eval-defun-at-point`).
-    ;;   :clojure.tools.namespace.repl/load false}
-    user
+(ns user
   (:require [clojure.java.javadoc :refer [javadoc]]
             [clojure.pprint :refer [pp pprint]]
             [clojure.repl :refer :all ; [apropos dir doc find-doc pst source]
