@@ -5,7 +5,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.9.76"]
+                 [org.clojure/clojurescript "1.9.456"]
                  [prismatic/schema "1.0.4"]
                  [org.clojure/core.async "0.2.385"]
                  [com.stuartsierra/component "0.3.1"]
@@ -22,8 +22,8 @@
                  [cheshire "5.5.0"]
                  [quil "2.4.0"]]
 
-  :plugins [[lein-cljsbuild "1.1.2"]
-            [lein-figwheel "0.5.4-7"]]
+  :plugins [[lein-cljsbuild "1.1.5"]
+            [lein-figwheel "0.5.9"]]
 
   :main ^:skip-aot nomisdraw.system.main
   :repl-options {:init-ns user}
