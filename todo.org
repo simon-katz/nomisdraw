@@ -1,10 +1,31 @@
-* TODO
-** Do you have another re-com-utils ns somewhere?
-*** piano-xxxx?
-*** env-viewer?
-** Maybe ask for `qs-maybe-non-api/destroy-previous-sketch` to be part of the API
-*** (or if he has other suggestions...)
-** Maybe move `nomisdraw.utils.nomis-quil-on-reagent` to a library
-*** and reply at
-**** http://stackoverflow.com/questions/33345084/quil-sketch-on-a-reagent-canvas
-*** Would be good not to use re-com there
+* References
+** Quil
+*** http://quil.info/
+*** http://nbeloglazov.com/2014/05/29/quil-intro.html
+*** https://processing.org/
+*** http://quil.info/api
+*** [[https://github.com/quil/quil/wiki/Functional-mode-(fun-mode)]]
+*** https://github.com/quil/quil/wiki/ClojureScript
+** Reagent
+*** https://github.com/Day8/re-frame/wiki/Creating-Reagent-Components
+*** [[http://us1.campaign-archive2.com/?e%3Df9e9b0dc66&id%3D0c428e5f19&u%3D60763b0c4890c24bd055f32e6][The Clojure Atom / re-frame]]
+*** https://github.com/Day8/re-frame
+*** [[https://gist.github.com/staltz/868e7e9bc2a7b8c1f754][The introduction to Reactive Programming you've been missing]]
+** re-com
+*** https://github.com/Day8/re-com
+*** http://re-demo.s3-website-ap-southeast-2.amazonaws.com/#/introduction
+*** https://github.com/Day8/re-com/blob/master/run/resources/public/index_dev.html
+*** https://github.com/Day8/re-com/blob/master/run/resources/public/index_prod.html
+*** https://github.com/Day8/re-com/blob/master/src/re_com/text.cljs
+*** https://github.com/Day8/re-com/blob/master/src/re_demo/checkbox.cljs
+*** Flexbox
+**** https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+* TODO Do you have another re-com-utils ns somewhere?
+** piano-xxxx?
+** env-viewer?
+* TODO Maybe ask for `qs-maybe-non-api/destroy-previous-sketch` to be part of the API
+** (or if he has other suggestions...)
+* TODO Maybe move `nomisdraw.utils.nomis-quil-on-reagent` to a library
+** and reply at
+*** http://stackoverflow.com/questions/33345084/quil-sketch-on-a-reagent-canvas
+** Would be good not to use re-com there
