@@ -38,7 +38,7 @@
                                      size))
         [w h]           size
         canvas-id       (random-canvas-id)
-        canvas-tag-&-id (keyword (str "canvas#" canvas-id))
+        canvas-tag-&-id (keyword (str "div#" canvas-id))
         sketch-args*    (merge sketch-args
                                {:host canvas-id})
         saved-sketch-atom (atom ::not-set-yet)]
