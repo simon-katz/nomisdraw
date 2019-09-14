@@ -3,7 +3,7 @@
             [quil.core :as q :include-macros true]
             [reagent.core :as r]
             [taoensso.timbre :as timbre])
-  (:require-macros [cljs.core.async.macros :as a]))
+  (:require-macros [cljs.core.async.macros]))
 
 ;;;; Making Quil work well with Reagent...
 ;;;; - I got the core idea from skrat's answer at

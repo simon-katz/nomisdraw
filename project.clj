@@ -4,26 +4,27 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.9.456"]
-                 [prismatic/schema "1.0.4"]
-                 [org.clojure/core.async "0.2.385"]
-                 [com.stuartsierra/component "0.3.1"]
-                 [com.taoensso/timbre "4.7.0"]
-                 [cljs-ajax "0.5.3"]
-                 [environ "1.0.1"]
-                 [reagent "0.6.0-rc"]
-                 [re-com "0.8.3"]
-                 [compojure "1.4.0"]
-                 [ring "1.4.0"]
-                 [ring/ring-defaults "0.1.5"]
-                 [ring-middleware-format "0.7.0"]
-                 [clj-http "2.0.1"]
-                 [cheshire "5.5.0"]
-                 [quil "2.6.0"]]
+  :dependencies [[org.clojure/clojure "1.9.0"]
+                 [org.clojure/clojurescript "1.10.520"]
+                 [com.andrewmcveigh/cljs-time "0.5.2"]
+                 [prismatic/schema "1.1.12"]
+                 [org.clojure/core.async "0.4.500"]
+                 [com.stuartsierra/component "0.4.0"]
+                 [com.taoensso/timbre "4.10.0"]
+                 [cljs-ajax "0.8.0"]
+                 [environ "1.1.0"]
+                 [reagent "0.9.0-rc1"]
+                 [re-com "2.5.0"]
+                 [compojure "1.6.1"]
+                 [ring "1.7.1"]
+                 [ring/ring-defaults "0.3.2"]
+                 [ring-middleware-format "0.7.4"]
+                 [clj-http "3.10.0"]
+                 [cheshire "5.9.0"]
+                 [quil "2.8.0"]]
 
-  :plugins [[lein-cljsbuild "1.1.5"]
-            [lein-figwheel "0.5.9"]]
+  :plugins [[lein-cljsbuild "1.1.7"]
+            [lein-figwheel "0.5.19"]]
 
   :main ^:skip-aot nomisdraw.system.main
   :repl-options {:init-ns user
@@ -31,7 +32,7 @@
 
   :source-paths ["src/clj"]
   :test-paths   ["test/clj"]
-  
+
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
 
   :hooks [leiningen.cljsbuild]
@@ -90,11 +91,11 @@
              }
 
   :profiles {:dev {:source-paths ["dev"]
-                   :dependencies [[org.clojure/tools.namespace "0.2.11"]
-                                  [midje "1.7.0"]
+                   :dependencies [[org.clojure/tools.namespace "0.3.1"]
+                                  [midje "1.9.9"]
                                   [cider/piggieback "0.4.1"]
-                                  [figwheel-sidecar "0.5.0-2"]]
-                   :plugins [[lein-midje "3.1.3"]]}
+                                  [figwheel-sidecar "0.5.19"]]
+                   :plugins [[lein-midje "3.2.1"]]}
              :uberjar {:aot :all}}
 
   :target-path "target/%s/")
