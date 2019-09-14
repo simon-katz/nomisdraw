@@ -39,7 +39,7 @@
         [w h]           size
         canvas-id       (random-canvas-id)
         canvas-tag-&-id (keyword (str "canvas#" canvas-id))
-        sketch-args*    (merge sketch-args 
+        sketch-args*    (merge sketch-args
                                {:host canvas-id})
         saved-sketch-atom (atom ::not-set-yet)]
     [r/create-class

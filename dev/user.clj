@@ -21,7 +21,7 @@
 (defonce the-system
   ;; "A container for the current instance of the application.
   ;; Only used for interactive development."
-  ;; 
+  ;;
   ;; Don't want to lose this value if this file is recompiled (when
   ;; changes are made to the useful additional utilities for the REPL
   ;; at the end of the file), so use `defonce`.

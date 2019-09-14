@@ -17,7 +17,7 @@
 (defn example-1 []
   (letfn [(draw []
             (q/frame-rate 0.1)
-            
+
             ;; make background white
             (q/background 255)
 
