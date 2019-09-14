@@ -153,6 +153,16 @@ html, body {
   background: #eeeeee;
   display: list-item;
 }
+.chosen-container .chosen-results .error {
+  text-align: center;
+  background: #f2dede;
+  display: list-item;
+}
+.chosen-container .chosen-results .loading {
+  text-align: center;
+  color: #ccc;
+  display: list-item;
+}
 .chosen-container .chosen-results-scroll {
   background: white;
   margin: 0 4px;
@@ -815,6 +825,18 @@ html, body {
     left: 15%;
 }
 
+.loader.smaller {
+    width: 9px;
+    height: 10px;
+    margin: 7px;
+}
+
+.loader.smaller li {
+    width: 4px;
+    height: 4px;
+    margin-top: -2px;
+    margin-left: -2px;
+}
 
 .loader.small {
     width: 12px;
@@ -942,8 +964,23 @@ html, body {
   color: #d50000;
 }
 
+/* Override bootstrap green validation */
+
+.has-success .form-control {
+  border-color: #13C200;
+}
+
+.has-success .form-control:focus {
+  border-color: #13C200;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px rgba(19, 194, 0, 0.6);
+}
+
 .rc-input-text .zmdi-alert-circle {
   color: #d50000;
+}
+
+.rc-input-text .zmdi-check-circle {
+  color: #13C200;
 }
 
 .alert-warning {
@@ -1297,4 +1334,19 @@ code {
 .zmdi-hc-fw-rc {
   width: 1em;
   text-align: center;
+}
+
+.rc-typeahead-suggestions-container {
+    position: absolute;
+    width: 100%;
+    background-color: #eee;
+}
+
+.rc-typeahead-suggestion {
+    background-color: #eee;
+    padding: 0.4em;
+}
+
+.rc-typeahead-suggestion.active {
+    background-color: #ddd;
 }
