@@ -1,5 +1,21 @@
 # No real doc here yet FIXME
 
+# Using figwheel-sidecar
+
+You don't have to do `lein figwheel`.
+
+From a Clojure REPL you can do:
+
+```
+(use 'figwheel-sidecar.repl-api)
+(start-figwheel!)
+```
+
+You will need to refresh the browser.
+
+FWIW, the `lein-figwheel` dependency isn't needed for this to work.
+
+
 # A problem with the `quil.util` ns
 
 Hmmm...
