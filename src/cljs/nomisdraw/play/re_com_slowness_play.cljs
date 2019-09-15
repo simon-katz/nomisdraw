@@ -1,24 +1,21 @@
 (ns nomisdraw.play.re-com-slowness-play
   (:require [re-com.core :as re]))
 
-(defn render []
+(defn render-n [approach nesting-level]
   (time
-   (let [text          "Rhubarb"
-         approach      1
-         nesting-level (case 2
-                         1   4
-                         2 620)]
-     (letfn [[nestify [elements]
-              (case approach
-                1 (into [:div] elements)
-                2 [re/v-box :children elements])]
-             (stuff [n]
-               (nestify (repeat 5 [:p (str n " " text)])))
-             (nested-structure [n]
-               (letfn [(r [cnt]
-                         (if (> cnt n)
-                           nil
-                           (nestify [(r (inc cnt))
-                                     (stuff cnt)])))]
-                 (r 1)))]
-       (nested-structure nesting-level)))))
+   (let [text "Rhubarb"]
+     (letfn [(stuff [n]
+               (let [elements (repeat 5 [:p (str n " " text)])]
+                 (case approach
+                   1 `[:div ~@elements]
+                   2 [re/v-box :children elements])))]
+       (reduce (fn [sofar next] [:div next sofar])
+               nil
+               (map stuff (range nesting-level)))))))
+
+(defn render []
+  (render-n 1
+            (case 2
+              1   3
+              2 620
+              3 100)))
