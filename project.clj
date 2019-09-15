@@ -4,7 +4,7 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :dependencies [[org.clojure/clojure "1.9.0"]
+  :dependencies [[org.clojure/clojure "1.10.1"]
                  [org.clojure/clojurescript "1.10.520"]
                  [com.andrewmcveigh/cljs-time "0.5.2"]
                  [prismatic/schema "1.1.12"]
@@ -14,7 +14,7 @@
                  [cljs-ajax "0.8.0"]
                  [environ "1.1.0"]
                  [reagent "0.9.0-rc1"]
-                 [re-com "2.5.0"]
+                 [re-com "2.6.0"]
                  [compojure "1.6.1"]
                  [ring "1.7.1"]
                  [ring/ring-defaults "0.3.2"]
