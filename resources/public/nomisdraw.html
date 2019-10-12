@@ -1,12 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset='utf-8'>
 
+    <!-- TODO: What is this for? -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- #### This is for prod. What about for dev? Are two separate app files needed? -->
+    <title>Nomisdraw</title>
 
+    <!-- TODO: This is for prod. What about for dev? Are two separate HTML files
+         needed? Compare the two files at
+         https://github.com/Day8/re-com/tree/master/run/resources/public
+         These have two differences: Using a CDN and using a different version
+         of generated JS. -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="assets/css/re-com.css">
@@ -14,10 +20,11 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300' rel='stylesheet' type='text/css'>
 
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
   </head>
   <body>
-    <div id="app" style="height: inherit"></div>
+    <div id="app" style="height: inherit">
+      <h1>Nomisdraw — loading…</h1>
     </div>
     <script src="js/compiled/nomisdraw.js" type="text/javascript"></script>
   </body>
