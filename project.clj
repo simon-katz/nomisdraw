@@ -21,7 +21,7 @@
                  [ring-middleware-format "0.7.4"]
                  [clj-http "3.10.0"]
                  [cheshire "5.9.0"]
-                 [quil "3.0.0"]]
+                 [quil "3.1.0"]]
 
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-figwheel "0.5.19"]]
