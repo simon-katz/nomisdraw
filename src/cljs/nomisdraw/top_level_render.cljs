@@ -1,6 +1,7 @@
 (ns nomisdraw.top-level-render
   (:require [nomisdraw.play.examples-from-quil-intro :as qi]
             [nomisdraw.play.quil-animation-play :as qap]
+            [nomisdraw.play.cartoon-dynamic-face :as cartoon-dynamic-face]
             [nomisdraw.play.re-com-slowness-play :as slowness-play]
             [nomisdraw.utils.nomis-re-com-utils :as reu]
             [reagent.core :as r]
@@ -33,4 +34,7 @@
                     :fun #'qap/render}
                    {:id :nested-re-com-can-be-slow
                     :label "Nested re-com can be slow"
-                    :fun #'slowness-play/render}]]]])
+                    :fun #'slowness-play/render}
+                   {:id :cartoon-dynamic-face
+                    :label "Cartoon Dynamic Face"
+                    :fun #'cartoon-dynamic-face/render}]]]])
