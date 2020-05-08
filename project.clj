@@ -27,8 +27,7 @@
             [lein-figwheel "0.5.19"]]
 
   :main ^:skip-aot nomisdraw.system.main
-  :repl-options {:init-ns user
-                 :nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
+  :repl-options {:init-ns user}
 
   :source-paths ["src/clj"]
   :test-paths   ["test/clj"]
@@ -93,7 +92,6 @@
   :profiles {:dev {:source-paths ["dev"]
                    :dependencies [[org.clojure/tools.namespace "0.3.1"]
                                   [midje "1.9.9"]
-                                  [cider/piggieback "0.4.1"]
                                   [figwheel-sidecar "0.5.19"]]
                    :plugins [[lein-midje "3.2.1"]]}
              :uberjar {:aot :all}}
