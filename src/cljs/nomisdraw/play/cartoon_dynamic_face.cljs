@@ -36,20 +36,9 @@
              (+ 200 (* 40 (q/sin (/ t 30))))))
 
 (defn ^:private v->n-x-pixels [v]
-  (cond
-    (<= v -30) -10
-    (<= v -25)  -9
-    (<= v -20)  -8
-    (<= v -15)  -6
-    (<= v -10)  -4
-    (<= v -5)   -2
-    (<= v 0)     0
-    (<= v 5)     2
-    (<= v 10)    4
-    (<= v 20)    6
-    (<= v 30)    8
-    (<= v 40)    9
-    :else       10))
+  (* (if (< v 0) -1 1)
+     (min 10
+          (/ (q/abs v) 2))))
 
 (defn ^:private eyes [t centre-x centre-y]
   (q/stroke 0)
@@ -70,11 +59,11 @@
             v-x     (case id :left vv-x :right (- vv-x))
             delta-x (v->n-x-pixels v-x)
             delta-x (case id :left delta-x :right (- delta-x))
-            ratio-x (q/abs (/ delta-x vv-x))
+            ratio-x (if (zero? vv-x) 999999 (q/abs (/ delta-x vv-x)))
             vv-y    (- (q/pmouse-y) eye-centre-y)
             v-y     vv-y
             delta-y (* 0.5 (v->n-x-pixels v-y))
-            ratio-y (q/abs (/ delta-y vv-y))
+            ratio-y (q/abs (if (zero? vv-y) 999999 (/ delta-y vv-y)))
             use-x?  (< ratio-x ratio-y)
             delta-x (if (and (not use-x?)
                              (not (zero? ratio-y)))
@@ -84,7 +73,6 @@
                              (not (zero? ratio-x)))
                       (* ratio-x vv-y)
                       delta-y)]
-        ;; (println delta-x delta-y)
         (q/ellipse (+ eye-centre-x delta-x)
                    (+ eye-centre-y delta-y)
                    7
