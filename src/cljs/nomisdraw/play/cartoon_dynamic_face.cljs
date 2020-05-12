@@ -66,17 +66,29 @@
                  30
                  20)
       (q/fill 0)
-      (q/ellipse (+ eye-centre-x
-                    (let [vv    (- (q/pmouse-x) eye-centre-x)
-                          v     (case id :left vv :right (- vv))
-                          delta  (v->n-x-pixels v)]
-                      (case id :left delta :right (- delta))))
-                 (+ eye-centre-y
-                    (let [v     (- (q/pmouse-y) eye-centre-y)
-                          delta  (* 0.5 (v->n-x-pixels v))]
-                      delta))
-                 7
-                 7))))
+      (let [vv-x    (- (q/pmouse-x) eye-centre-x)
+            v-x     (case id :left vv-x :right (- vv-x))
+            delta-x (v->n-x-pixels v-x)
+            delta-x (case id :left delta-x :right (- delta-x))
+            ratio-x (q/abs (/ delta-x vv-x))
+            vv-y    (- (q/pmouse-y) eye-centre-y)
+            v-y     vv-y
+            delta-y (* 0.5 (v->n-x-pixels v-y))
+            ratio-y (q/abs (/ delta-y vv-y))
+            use-x?  (< ratio-x ratio-y)
+            delta-x (if (and (not use-x?)
+                             (not (zero? ratio-y)))
+                      (* ratio-y vv-x)
+                      delta-x)
+            delta-y (if (and use-x?
+                             (not (zero? ratio-x)))
+                      (* ratio-x vv-y)
+                      delta-y)]
+        ;; (println delta-x delta-y)
+        (q/ellipse (+ eye-centre-x delta-x)
+                   (+ eye-centre-y delta-y)
+                   7
+                   7)))))
 
 (defn ^:private nose [t centre-x centre-y]
   (q/stroke 0)
@@ -103,11 +115,11 @@
   (q/stroke 0)
   (q/stroke-weight 1)
   (q/fill 0 0 255)
-  (q/ellipse centre-x centre-y 50 50)
+  (q/ellipse centre-x centre-y 20 20)
   (q/fill 0 255 0)
-  (q/ellipse centre-x centre-y 35 35)
+  (q/ellipse centre-x centre-y 14 14)
   (q/fill 255 0 0)
-  (q/ellipse centre-x centre-y 20 20))
+  (q/ellipse centre-x centre-y  8  8))
 
 (defn ^:private my-sketch [w h]
   (letfn [(initial-state []
