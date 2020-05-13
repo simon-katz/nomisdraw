@@ -7,6 +7,9 @@
 (def ^:private width  650)
 (def ^:private height 400)
 
+(def eyebrow-inner-delta-y -3)
+(def eyebrow-fudge-factor 1.3)
+
 (defn make-centre-x-a []
   (/ (q/width) 2))
 
@@ -24,21 +27,28 @@
 
 (defn ^:private eye-brows [centre-x centre-y]
   (q/stroke 0)
-  (q/stroke-weight 1)
   (doseq [id [:left :right]]
     (q/fill 0)
     (let [dx            (case id
                           :left 30
                           :right -30)
-          eye-centre-x  (+ centre-x dx)
-          brow-centre-y (- centre-y 30)]
-      (q/arc eye-centre-x
-             brow-centre-y
-             60
-             40
-             (- (* 3 q/QUARTER-PI))
-             (- (* 1 q/QUARTER-PI))
-             :chord))))
+          eye-centre-x  (+ centre-x dx)]
+      (q/stroke-weight 5)
+      (let [towards-out   (case id :left + :right -)
+            towards-in    (case id :left - :right +)
+            brow-centre-y (- centre-y 50)
+            w-slash-2     (/ 30 2.7)
+            fudge*delta-y (* eyebrow-fudge-factor
+                             eyebrow-inner-delta-y)
+            x-inner       (towards-in eye-centre-x
+                                      w-slash-2
+                                      fudge*delta-y)
+            y-inner       (+ brow-centre-y eyebrow-inner-delta-y)
+            x-outer       (towards-out eye-centre-x
+                                       w-slash-2
+                                       (- fudge*delta-y))
+            y-outer       (- brow-centre-y eyebrow-inner-delta-y)]
+        (q/line x-inner y-inner x-outer y-outer)))))
 
 (defn ^:private eyes [centre-x centre-y]
   (q/stroke 0)
