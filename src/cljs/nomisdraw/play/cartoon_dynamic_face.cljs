@@ -14,11 +14,11 @@
 
 (defn make-centre-x-a [t]
   (+ (* 180 (q/sin (/ t 200)))
-     320))
+     (/ (q/width) 2)))
 
 (defn make-centre-y-a [t]
   (+ (* 70 (q/sin (/ t 300)))
-     200))
+     (/ (q/height) 2)))
 
 (defn make-centre-x-b [t]
   (q/pmouse-x))
