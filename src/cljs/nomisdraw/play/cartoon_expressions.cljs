@@ -7,14 +7,14 @@
 (def ^:private width  650)
 (def ^:private height 400)
 
-(def eyebrow-inner-delta-y -3)
 (def eyebrow-fudge-factor 1.3)
 
-(defn make-centre-x-a []
-  (/ (q/width) 2))
+(defn make-centre-xs [rs]
+  (for [r rs]
+    (* (q/width) r)))
 
-(defn make-centre-y-a []
-  (/ (q/height) 2))
+(defn make-centre-y []
+  (* (q/height) 0.5))
 
 (defn ^:private face-outline [centre-x centre-y]
   (q/stroke 0)
@@ -22,10 +22,10 @@
   (q/fill 255)
   (q/ellipse centre-x
              centre-y
-             200
-             200))
+             150
+             180))
 
-(defn ^:private eye-brows [centre-x centre-y]
+(defn ^:private eye-brows [centre-x centre-y eyebrow-inner-delta-y]
   (q/stroke 0)
   (doseq [id [:left :right]]
     (q/fill 0)
@@ -88,20 +88,30 @@
              30
              5))
 
+(defn ^:private face [centre-x
+                      centre-y
+                      eyebrow-inner-delta-y]
+  (face-outline centre-x centre-y)
+  (eyes centre-x centre-y)
+  (eye-brows centre-x centre-y eyebrow-inner-delta-y)
+  (nose centre-x centre-y)
+  (mouth centre-x centre-y))
+
 (defn ^:private my-sketch [w h]
   (letfn [(initial-state []
             (q/no-loop))
           (draw [state]
             (println "==== draw" state)
-            (let [centre-x (make-centre-x-a)
-                  centre-y (make-centre-y-a)]
-              (q/background 100 0 100)
-              ;;
-              (face-outline centre-x centre-y)
-              (eyes centre-x centre-y)
-              (eye-brows centre-x centre-y)
-              (nose centre-x centre-y)
-              (mouth centre-x centre-y)))]
+            (q/background 100 0 100)
+            (doseq [[centre-x
+                     eyebrow-inner-delta-y] (map vector
+                                                 (make-centre-xs [0.1 0.3 0.5 0.7 0.9])
+                                                 [-6 -3 0 3 6])]
+              (let [centre-y (make-centre-y)]
+                ;;
+                (face centre-x
+                      centre-y
+                      eyebrow-inner-delta-y))))]
     (qor/sketch :setup      initial-state
                 :draw       draw
                 :middleware [m/fun-mode]
