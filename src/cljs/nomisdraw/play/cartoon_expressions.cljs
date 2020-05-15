@@ -15,8 +15,8 @@
 
 (def eyebrows-h-below-centre -30)
 (def eyes-h-below-centre     -10)
-(def nose-h-below-centre      15)
-(def mouth-h-below-centre     45)
+(def nose-h-below-centre       8)
+(def mouth-h-below-centre     35)
 
 (def eyes-pupils-w-adjustment  0)
 
@@ -33,8 +33,8 @@
   (q/fill 255)
   (q/ellipse centre-x
              centre-y
-             125
-             160))
+             115
+             140))
 
 (defn ^:private eye-brows [centre-x centre-y eyebrow-inner-delta-y]
   (q/stroke 0)
