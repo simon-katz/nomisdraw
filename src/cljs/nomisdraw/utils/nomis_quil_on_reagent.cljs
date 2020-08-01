@@ -10,6 +10,9 @@
 ;;;;   http://stackoverflow.com/questions/33345084/quil-sketch-on-a-reagent-canvas
 ;;;; - I've made it more functional.
 
+;;;; TODO Make a library that does this (which is the same as
+;;;;      `com.nomistech.music-theory.utils.quil.nomis-quil-on-reagent`).
+
 (defn ^:private random-alpha-string [length]
   (let [ascii-codes (concat (range 65 91)
                             (range 97 123))]
