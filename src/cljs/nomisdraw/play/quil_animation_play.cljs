@@ -6,7 +6,7 @@
 
 (defn ^:private my-sketch [w h]
   (letfn [(initial-state []
-            {:time 1})
+            {:time 0})
           (update-state [state]
             (update state :time inc))
           (draw [state]
