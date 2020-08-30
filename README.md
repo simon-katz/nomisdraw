@@ -1,5 +1,9 @@
 # No real doc here yet FIXME
 
+# Dev
+
+`lein clean ; lein figwheel`
+
 # Using figwheel-sidecar
 
 You don't have to do `lein figwheel`.
