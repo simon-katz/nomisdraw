@@ -26,11 +26,11 @@
                  a)
           a))))
 
-(defn dropdown-and-chosen-item [& {:keys [options
-                                          dropdown-uniquifier
-                                          outer-style
-                                          inner-style]
-                                   :or {:dropdown-uniquifier ::default}}]
+(defn dropdown-and-chosen-item [{:keys [options
+                                        dropdown-uniquifier
+                                        outer-style
+                                        inner-style]
+                                 :or {:dropdown-uniquifier ::default}}]
   (let [selected-id-atom (options-&-uniquifier>selected-id-atom options
                                                                 dropdown-uniquifier)]
     [re/v-box
