@@ -117,5 +117,8 @@
      (interpose (re/line)
                 (for [i (range 3)]
                   [rex/dropdown-and-chosen-item
-                   {:dropdown-uniquifier i
-                    :choices    choices}])))])
+                   {:label-options       {:label "Select example from Quil intro"}
+                    :outer-options       {:gap "10px"}
+                    :dropdown-uniquifier i
+                    :dropdown-options    {:width "auto"}
+                    :dropdown-choices    choices}])))])

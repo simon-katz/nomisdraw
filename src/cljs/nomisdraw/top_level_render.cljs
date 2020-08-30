@@ -19,26 +19,29 @@
    :children
    [[:h1 "Nomisdraw"]
     [rex/dropdown-and-chosen-item
-     {:outer-style {:border-style "solid"
-                    :border-width "4px"
-                    :border-color "grey"
-                    :padding      "8px"}
-      :inner-style {:border-style "solid"
-                    :border-width "1px"
-                    :border-color "grey"
-                    :padding      "8px"}
-      :choices     [{:id :quil-basics
-                     :label "Examples from Quil Intro"
-                     :fun #'qi/render}
-                    {:id :some-quil-animation-stuff
-                     :label "Some Quil Animation Stuff"
-                     :fun #'qap/render}
-                    {:id :nested-re-com-can-be-slow
-                     :label "Nested re-com can be slow"
-                     :fun #'slowness-play/render}
-                    {:id :cartoon-dynamic-face
-                     :label "Cartoon Dynamic Face"
-                     :fun #'cartoon-dynamic-face/render}
-                    {:id :cartoon-expressions
-                     :label "Cartoon Expressions"
-                     :fun #'cartoon-expressions/render}]}]]])
+     {:label-options    {:label "Select a demo"}
+      :outer-style      {:border-style "solid"
+                         :border-width "4px"
+                         :border-color "grey"
+                         :padding      "8px"}
+      :outer-options    {:gap "10px"}
+      :inner-style      {:border-style "solid"
+                         :border-width "1px"
+                         :border-color "grey"
+                         :padding      "8px"}
+      :dropdown-options {:width "auto"}
+      :dropdown-choices [{:id :quil-basics
+                          :label "Examples from Quil Intro"
+                          :fun #'qi/render}
+                         {:id :some-quil-animation-stuff
+                          :label "Some Quil Animation Stuff"
+                          :fun #'qap/render}
+                         {:id :nested-re-com-can-be-slow
+                          :label "Nested re-com can be slow"
+                          :fun #'slowness-play/render}
+                         {:id :cartoon-dynamic-face
+                          :label "Cartoon Dynamic Face"
+                          :fun #'cartoon-dynamic-face/render}
+                         {:id :cartoon-expressions
+                          :label "Cartoon Expressions"
+                          :fun #'cartoon-expressions/render}]}]]])
