@@ -26,7 +26,7 @@
                                         dropdown-uniquifier
                                         outer-style
                                         inner-style]
-                                 :or {:dropdown-uniquifier ::default}}]
+                                 :or {dropdown-uniquifier ::default}}]
   (let [selected-id& (options-&-uniquifier>selected-id-atom options
                                                             dropdown-uniquifier)]
     [re/v-box
