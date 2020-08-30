@@ -31,8 +31,8 @@
                                         outer-style
                                         inner-style]
                                  :or {:dropdown-uniquifier ::default}}]
-  (let [selected-id-atom (options-&-uniquifier>selected-id-atom options
-                                                                dropdown-uniquifier)]
+  (let [selected-id& (options-&-uniquifier>selected-id-atom options
+                                                            dropdown-uniquifier)]
     [re/v-box
      :style outer-style
      :width     "700px"
@@ -43,14 +43,14 @@
                   :children [[re/label :label "Select a demo"]
                              [re/single-dropdown
                               :choices   options
-                              :model     selected-id-atom
+                              :model     selected-id&
                               :width     "300px"
-                              :on-change #(reset! selected-id-atom %)]]]
+                              :on-change #(reset! selected-id& %)]]]
                  (re/box
                   :style inner-style
                   :child
                   (let [fun (->> options
-                                 (filter #(= @selected-id-atom
+                                 (filter #(= @selected-id&
                                              (:id %)))
                                  first
                                  :fun)]
