@@ -10,13 +10,12 @@
 
 (defn ^:private choices-&-uniquifier>selected-id-atom [dropdown-choices
                                                        dropdown-uniquifier]
-  (let [k [dropdown-choices dropdown-uniquifier]]
-    (or (get @choices-s-atom k)
-        (let [a (r/atom (-> dropdown-choices
-                            first
-                            :id))]
-          (swap! choices-s-atom assoc k a)
-          a))))
+  (or (get @choices-s-atom dropdown-uniquifier)
+      (let [a (r/atom (-> dropdown-choices
+                          first
+                          :id))]
+        (swap! choices-s-atom assoc dropdown-uniquifier a)
+        a)))
 
 (defn ^:private apply-component [f opts]
   (vec (cons f (apply concat opts))))
@@ -27,8 +26,8 @@
                                         dropdown-options
                                         outer-style
                                         outer-options
-                                        inner-style]
-                                 :or {dropdown-uniquifier ::default}}]
+                                        inner-style]}]
+  (assert (not (nil? dropdown-uniquifier)))
   (let [selected-id& (choices-&-uniquifier>selected-id-atom dropdown-choices
                                                             dropdown-uniquifier)]
     (apply-component
