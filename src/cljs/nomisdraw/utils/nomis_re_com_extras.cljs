@@ -2,13 +2,6 @@
   (:require [reagent.core :as r]
             [re-com.core :as re]))
 
-;;; TODO: Doc.
-;;;       Including:
-;;;       - The `:fun`s need to be #'-d for interactive development.
-;;;         (Hmmm, so don't use anonymous functions. Painful.)
-
-;;; TODO: Use a schema (or a clojure.spec spec) for choices.
-
 (defonce ^:private choices-s-atom
   (atom {}))
 

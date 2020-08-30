@@ -22,12 +22,20 @@
 **** Flexbox
 ***** https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 ** Design notes
-*** TODO Do you have another re-com-extras (née re-com-utils) ns somewhere?
-**** piano-xxxx?
-**** env-viewer?
-*** TODO Maybe ask for `qs-maybe-non-api/destroy-previous-sketch` to be part of the API
-**** (or if he has other suggestions...)
-*** TODO Maybe move `nomisdraw.utils.nomis-quil-on-reagent` to a library
-**** and reply at
-***** http://stackoverflow.com/questions/33345084/quil-sketch-on-a-reagent-canvas
-**** Would be good not to use re-com there
+*** nomis-re-com-extras
+**** TODO Do you have another re-com-extras (née re-com-utils) ns somewhere?
+***** piano-xxxx?
+***** env-viewer?
+**** TODO Use a schema (or a clojure.spec spec) for choices
+**** TODO For documentation
+***** The `:fun`s need to be #'-d for interactive development
+****** Hmmm, so don't use anonymous functions
+******* Painful
+*** Quil
+**** TODO Maybe ask for `qs-maybe-non-api/destroy-previous-sketch` to be part of the API
+***** (or if he has other suggestions...)
+*** nomis-quil-on-reagent
+**** TODO Maybe move `nomisdraw.utils.nomis-quil-on-reagent` to a library
+***** and reply at
+****** http://stackoverflow.com/questions/33345084/quil-sketch-on-a-reagent-canvas
+***** Would be good not to use re-com there
