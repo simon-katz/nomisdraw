@@ -15,15 +15,11 @@
 (defn ^:private options-&-uniquifier>selected-id-atom [options
                                                        dropdown-uniquifier]
   (let [k [options dropdown-uniquifier]]
-    (or (get @options-s-atom
-             k)
+    (or (get @options-s-atom k)
         (let [a (r/atom (-> options
                             first
                             :id))]
-          (swap! options-s-atom
-                 assoc
-                 k
-                 a)
+          (swap! options-s-atom assoc k a)
           a))))
 
 (defn dropdown-and-chosen-item [{:keys [options
