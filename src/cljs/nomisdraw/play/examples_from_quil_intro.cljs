@@ -1,5 +1,5 @@
 (ns nomisdraw.play.examples-from-quil-intro
-  (:require [nomisdraw.utils.nomis-re-com-utils :as reu]
+  (:require [nomisdraw.utils.nomis-re-com-extras :as rex]
             [nomisdraw.utils.nomis-quil-on-reagent :as qor]
             [quil.core :as q :include-macros true]
             [quil.middleware :as m]
@@ -116,6 +116,6 @@
                    :fun #'example-4}]]
      (interpose (re/line)
                 (for [i (range 3)]
-                  [reu/dropdown-and-chosen-item
+                  [rex/dropdown-and-chosen-item
                    :dropdown-uniquifier i
                    :options    options])))])

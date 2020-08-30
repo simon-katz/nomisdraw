@@ -20,7 +20,7 @@
 *** https://github.com/Day8/re-com/blob/master/src/re_demo/checkbox.cljs
 *** Flexbox
 **** https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-* TODO Do you have another re-com-utils ns somewhere?
+* TODO Do you have another re-com-extras (née re-com-utils) ns somewhere?
 ** piano-xxxx?
 ** env-viewer?
 * TODO Maybe ask for `qs-maybe-non-api/destroy-previous-sketch` to be part of the API

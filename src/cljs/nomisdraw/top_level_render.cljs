@@ -4,7 +4,7 @@
             [nomisdraw.play.cartoon-dynamic-face :as cartoon-dynamic-face]
             [nomisdraw.play.cartoon-expressions :as cartoon-expressions]
             [nomisdraw.play.re-com-slowness-play :as slowness-play]
-            [nomisdraw.utils.nomis-re-com-utils :as reu]
+            [nomisdraw.utils.nomis-re-com-extras :as rex]
             [reagent.core :as r]
             [re-com.core :as re]))
 
@@ -18,7 +18,7 @@
    :style (style-for-top-level-div)
    :children
    [[:h1 "Nomisdraw"]
-    [reu/dropdown-and-chosen-item
+    [rex/dropdown-and-chosen-item
      :outer-style {:border-style "solid"
                    :border-width "4px"
                    :border-color "grey"
