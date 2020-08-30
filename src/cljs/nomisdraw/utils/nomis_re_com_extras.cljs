@@ -31,7 +31,6 @@
                                                             dropdown-uniquifier)]
     [re/v-box
      :style outer-style
-     :width     "700px"
      :gap       "10px"
      :children  [[re/h-box
                   :gap      "10px"
@@ -40,7 +39,7 @@
                              [re/single-dropdown
                               :choices   choices
                               :model     selected-id&
-                              :width     "300px"
+                              :width     "auto"
                               :on-change #(reset! selected-id& %)]]]
                  (re/box
                   :style inner-style
