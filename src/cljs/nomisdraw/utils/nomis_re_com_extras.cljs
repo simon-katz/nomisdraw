@@ -2,6 +2,9 @@
   (:require [reagent.core :as r]
             [re-com.core :as re]))
 
+;;;; TODO Make a library that does this (this is the same as
+;;;;      `com.nomistech.music-theory.library-candidates.nomis-re-com-extras`).
+
 (defonce ^:private choices-s-atom
   (atom {}))
 
