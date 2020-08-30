@@ -12,8 +12,9 @@
 (defonce ^:private options-s-atom
   (atom {}))
 
-(defn ^:private options-&-uniquifier>selected-id-atom [options uniquifier]
-  (let [k [options uniquifier]]
+(defn ^:private options-&-uniquifier>selected-id-atom [options
+                                                       dropdown-uniquifier]
+  (let [k [options dropdown-uniquifier]]
     (or (get @options-s-atom
              k)
         (let [a (r/atom (-> options
@@ -26,12 +27,12 @@
           a))))
 
 (defn dropdown-and-chosen-item [& {:keys [options
-                                          uniquifier
+                                          dropdown-uniquifier
                                           outer-style
                                           inner-style]
-                                   :or {:uniquifier ::default}}]
+                                   :or {:dropdown-uniquifier ::default}}]
   (let [selected-id-atom (options-&-uniquifier>selected-id-atom options
-                                                                uniquifier)]
+                                                                dropdown-uniquifier)]
     [re/v-box
      :style outer-style
      :width     "700px"

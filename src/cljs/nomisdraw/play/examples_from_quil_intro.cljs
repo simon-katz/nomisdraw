@@ -117,5 +117,5 @@
      (interpose (re/line)
                 (for [i (range 3)]
                   [reu/dropdown-and-chosen-item
-                   :uniquifier i
+                   :dropdown-uniquifier i
                    :options    options])))])
