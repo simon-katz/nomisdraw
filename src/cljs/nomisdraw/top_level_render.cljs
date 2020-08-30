@@ -27,7 +27,7 @@
                     :border-width "1px"
                     :border-color "grey"
                     :padding      "8px"}
-      :options     [{:id :quil-basics
+      :choices     [{:id :quil-basics
                      :label "Examples from Quil Intro"
                      :fun #'qi/render}
                     {:id :some-quil-animation-stuff

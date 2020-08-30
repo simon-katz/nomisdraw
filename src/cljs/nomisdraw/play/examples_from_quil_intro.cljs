@@ -99,7 +99,7 @@
   [re/v-box
    :gap "16px"
    :children
-   (let [options [{:id :something-that-uses-no-ongoing-cpu
+   (let [choices [{:id :something-that-uses-no-ongoing-cpu
                    :label "Low CPU usage"
                    :fun #'something-that-uses-no-ongoing-cpu}
                   {:id :example-1
@@ -118,4 +118,4 @@
                 (for [i (range 3)]
                   [rex/dropdown-and-chosen-item
                    {:dropdown-uniquifier i
-                    :options    options}])))])
+                    :choices    choices}])))])
